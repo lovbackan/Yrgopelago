@@ -28,7 +28,9 @@ function connect(string $dbName): object
                     transferCode TEXT,
                     arrival DATE,
                     departure DATE,
-                    room TEXT
+                    room TEXT,
+                    price INTEGER,
+                    offer1 TEXT
                 )");
     } catch (PDOException $e) {
         echo "Failed to connect to the database";

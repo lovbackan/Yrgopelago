@@ -2,17 +2,20 @@
 require("./hotelFunctions.php");
 $db = connect("hotel.db");
 
-if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"])) {
+//MED DENNA LÖSNING FÅR JAG EN WARNING HÖGST UPP MEN ALLT FUNKAR
+if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["price"], $_POST["offer1"]) || isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["price"])) {
   $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
   //gör en api-anrop för att se om transferCoden är valid lägg in i if sats
 
   $arrival = $_POST["arrival"];
   $departure = $_POST["departure"];
   $room = $_POST["room"];
+  $price = $_POST["price"];
+  $offer1 =  $_POST["offer1"];
 
   if ($arrival <= $departure) {
-    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room) VALUES (?,?,?,?)');
-    $stmt->execute([$transferCode, $arrival, $departure, $room]);
+    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,price,offer1) VALUES (?,?,?,?,?,?)');
+    $stmt->execute([$transferCode, $arrival, $departure, $room, $price, $offer1]);
   } else {
     //     echo '<script>alert("Sorry either the transfercode was wrong or you booked a weird date")</script>';
   }
@@ -51,7 +54,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     <input type="text" name="price" id="price" readonly>
     <button type="submit">Book!</button>
     <label for="offer1" class="form-control">Offer 1</label>
-    <input type="checkbox" id="offer1"name="offer1" unchecked />
+    <input type="checkbox" id="offer1"name="offer1" value="1" />
   </form>
   <script src="script.js"></script>
 </body>
