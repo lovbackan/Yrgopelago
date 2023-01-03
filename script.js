@@ -30,6 +30,8 @@ function priceCalculator() {
   } else {
     price.value = roomprice * totalDays;
   }
+
+  //Hitta checkboxes value och om de är i kryssade lägg till en statisk kostnad på price
 }
 
 form.addEventListener('change', () => {

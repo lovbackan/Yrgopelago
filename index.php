@@ -51,6 +51,12 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     <input type="text" name="price" id="price" readonly>
     <!-- make a price tab -->
     <button type="submit">Book!</button>
+    <label for="offer1" class="form-control">Offer 1</label>
+    <input type="checkbox" name="offer1" value="Yes" />
+    <label for="offer2" class="form-control">Offer 2</label>
+    <input type="checkbox" name="offer2" value="Yes" />
+    <label for="offer3" class="form-control">Offer 3</label>
+    <input type="checkbox" name="offer3" value="Yes" />
   </form>
   <script src="script.js"></script>
 </body>
