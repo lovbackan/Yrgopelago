@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types= 1);
 /*
 Here's something to start your career as a hotel manager.
 
