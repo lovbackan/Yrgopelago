@@ -7,9 +7,11 @@ const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
 
 function priceCalculator() {
-  let roomOption = selectedRoom.options[selectedRoom.selectedIndex].text;
-  let arrivalDate = arrival.value;
-  let departureDate = departure.value;
+  const roomOption = selectedRoom.options[selectedRoom.selectedIndex].text;
+  const arrivalDate = arrival.value;
+  const departureDate = departure.value;
+  const totalDays =
+    departureDate.split('-').pop() - arrivalDate.split('-').pop();
 
   let roomprice;
   if (roomOption === 'Economy') {
@@ -22,15 +24,12 @@ function priceCalculator() {
     roomprice = 0;
   }
 
-  //skriv kod kring hur rumspriset ändras beroende på hur länge man stannar (kanske finns en discount beroende på hur många nätter man stannar)
-
-  price.value = roomprice;
-
-  console.log(roomOption, roomprice, arrivalDate, departureDate);
-
-  // const arrival = document.querySel;ector('#arrival').value;
-  // const departure = document.querySelector('#departure').value
-  // const cost =
+  //DISCOUNT
+  if (totalDays > 1) {
+    price.value = (roomprice * totalDays) / 1.25;
+  } else {
+    price.value = roomprice * totalDays;
+  }
 }
 
 form.addEventListener('change', () => {
