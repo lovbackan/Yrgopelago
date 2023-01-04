@@ -2,7 +2,7 @@
 
 const form = document.querySelector('#inputForm');
 const selectedRoom = document.querySelector('#room');
-const price = document.querySelector('#price');
+const price = document.querySelector('#totalCost');
 const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
 let offer1Checked;

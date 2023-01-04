@@ -1,25 +1,7 @@
 <?php
 require("./hotelFunctions.php");
-$db = connect("hotel.db");
 
-//MED DENNA LÖSNING FÅR JAG EN WARNING HÖGST UPP MEN ALLT FUNKAR
-if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["price"], $_POST["offer1"]) || isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["price"])) {
-  $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
-  //gör en api-anrop för att se om transferCoden är valid lägg in i if sats
 
-  $arrival = $_POST["arrival"];
-  $departure = $_POST["departure"];
-  $room = $_POST["room"];
-  $price = $_POST["price"];
-  $offer1 =  $_POST["offer1"];
-
-  if ($arrival <= $departure) {
-    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,price,offer1) VALUES (?,?,?,?,?,?)');
-    $stmt->execute([$transferCode, $arrival, $departure, $room, $price, $offer1]);
-  } else {
-    //     echo '<script>alert("Sorry either the transfercode was wrong or you booked a weird date")</script>';
-  }
-};
 
 
 ?>
@@ -36,6 +18,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
 <body>
   <h1>Under Construction!</h1>
+  <h2>30% discount if you stay longer than one night!</h2>
   <form id="inputForm" method="post">
     <label for="transferCode">Transfer Code</label>
     <input type="text" name="transferCode" id="transferCode" required class="form-control">
@@ -50,8 +33,8 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
       <option value="Standard">Standard</option>
       <option value="Luxury">Luxury</option>
     </select>
-    <label for="price" class="form-control">Price</label>
-    <input type="text" name="price" id="price" readonly>
+    <label for="totalCost" class="form-control">Total Cost</label>
+    <input type="text" name="totalCost" id="totalCost" readonly>
     <button type="submit">Book!</button>
     <label for="offer1" class="form-control">Offer 1</label>
     <input type="checkbox" id="offer1"name="offer1" value="1" />
