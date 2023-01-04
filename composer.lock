@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0c8d8bcc1a0ef36d50280213dabd481",
+    "content-hash": "d4011adb9d4d0215df7ae4354ed3c8e5",
     "packages": [
+        {
+            "name": "benhall14/php-calendar",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/benhall14/php-calendar.git",
+                "reference": "274ab6d3214cb530ebd7d158f5752a74ceb4f9e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/benhall14/php-calendar/zipball/274ab6d3214cb530ebd7d158f5752a74ceb4f9e6",
+                "reference": "274ab6d3214cb530ebd7d158f5752a74ceb4f9e6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "benhall14\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Hall",
+                    "email": "ben@conobe.co.uk",
+                    "homepage": "https://github.com/benhall14",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple PHP class to generate calendars.",
+            "homepage": "https://github.com/benhall14/php-calendar",
+            "keywords": [
+                "calendar",
+                "calendars",
+                "date",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/benhall14/php-calendar/issues",
+                "source": "https://github.com/benhall14/php-calendar/tree/1.4"
+            },
+            "time": "2022-11-04T18:11:58+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "7.5.0",

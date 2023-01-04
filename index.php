@@ -1,8 +1,7 @@
 <?php
 require("./hotelFunctions.php");
-
-
-
+require(__DIR__ . '/vendor/autoload.php');
+use benhall14\phpCalendar\Calendar as Calendar;
 
 ?>
 <!DOCTYPE html>
@@ -40,6 +39,20 @@ require("./hotelFunctions.php");
     <input type="checkbox" id="offer1"name="offer1" value="1" />
   </form>
   <script src="script.js"></script>
+  <?php
+$calendar = new Calendar;
+$calendar->useSundayStartingDate();
+$events = array();
+$calendar->addEvent(
+                    '2023-01-14',   # start date in either Y-m-d or Y-m-d H:i if you want to add a time.
+                    '2023-01-18',   # end date in either Y-m-d or Y-m-d H:i if you want to add a time.
+                    'My Birthday',  # event name text
+                    true,           # should the date be masked - boolean default true
+                    ['myclass', 'abc']   # (optional) additional classes in either string or array format to be included on the event days
+                );
+echo $calendar->display(date('Y-m-d')); # draw this months calendar
+
+  ?>
 </body>
 
 </html>

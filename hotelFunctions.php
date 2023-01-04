@@ -73,6 +73,7 @@ $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
   if ($arrival <= $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
     $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,offer1) VALUES (?,?,?,?,?,?)');
     $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $offer1]);
+    depositToAccount($transferCode);
   } else {
    echo "woops something went wrong";
   }
@@ -108,15 +109,15 @@ return true;
 
 //Gör funktion som lägger in pengarna på ditt konto
 
-function depositToAccount(){
+function depositToAccount($transferCode){
 $client = new GuzzleHttp\Client();
 $options = [
 'form_params' => [
-"user" => getenv('USER_NAME'), "api_key" => getenv('API_KEY')]];
+"user" => getenv('USER_NAME'), "transfercode" => $transferCode]];
 try {
 $response = $client->post("https://www.yrgopelago.se/centralbank/deposit", $options);
 $response = $response->getBody()->getContents();
 $response = json_decode($response, true);
 print_r($response);
-
-}
+} catch (\Exception $e) {
+return "Error occured!" . $e;}};
