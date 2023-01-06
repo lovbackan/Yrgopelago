@@ -5,6 +5,7 @@ const selectedRoom = document.querySelector('#room');
 const price = document.querySelector('#totalCost');
 const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
+console.log(form, selectedRoom, price, arrival, departure);
 let offer1Checked;
 
 function getCheckboxStatus() {

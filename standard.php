@@ -1,5 +1,6 @@
 <?php
 require("./hotelFunctions.php");
+// isDateBooked("Standard", "2023-01-11", "2023-01-12" );
 
 ?>
 <!DOCTYPE html>
@@ -10,7 +11,7 @@ require("./hotelFunctions.php");
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Standard</title>
   <nav>
   <a href="./index.php">Home</a>
 <a href="./standard.php">Standard</a>
@@ -45,7 +46,7 @@ require("./hotelFunctions.php");
   <h2>Standard</h2>
   <?php bookedRooms('Standard') ?>
 
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>

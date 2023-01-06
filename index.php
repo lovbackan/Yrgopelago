@@ -1,5 +1,6 @@
 <?php
 require("./hotelFunctions.php");
+// date_range("2023-01-01", "2023-01-05", "+1 day", "Y-m-d");
 
 ?>
 <!DOCTYPE html>
@@ -12,6 +13,7 @@ require("./hotelFunctions.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <nav>
+<a href="./index.php">Home</a>
 <a href="./standard.php">Standard</a>
 <a href="./economy.php">Economy</a>
 <a href="./luxury.php">Luxury</a>
