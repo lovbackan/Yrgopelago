@@ -12,6 +12,7 @@ require("./hotelFunctions.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <nav>
+  <a href="./index.php">Home</a>
 <a href="./standard.php">Standard</a>
 <a href="./economy.php">Economy</a>
 <a href="./luxury.php">Luxury</a>
@@ -41,6 +42,8 @@ require("./hotelFunctions.php");
     <label for="offer1" class="form-control">Offer 1</label>
     <input type="checkbox" id="offer1"name="offer1" value="1" />
   </form>
+  <h2>Economy</h2>
+  <?php bookedRooms('Economy');?>
 
   <script src="script.js"></script>
 </body>

@@ -2,6 +2,8 @@
 declare(strict_types= 1);
 require(__DIR__ . '/vendor/autoload.php');
 use GuzzleHttp\Client;
+require 'vendor/autoload.php';
+use benhall14\phpCalendar\Calendar as Calendar;
 
 
 
@@ -32,6 +34,8 @@ function connect(string $dbName): object
     return $db;
 }
 
+$db = connect("hotel.db");
+
 function guidv4(string $data = null): string
 {
     // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
@@ -55,7 +59,7 @@ function isValidUuid(string $uuid): bool
     return true;
 }
 
-$db = connect("hotel.db");
+
 //DENNA KOD FIXAR BOKNINGEN
 if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"], $_POST["offer1"]) || isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
   $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
@@ -71,9 +75,11 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
 
   if ($arrival <= $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
+                    global $db;
     $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,offer1) VALUES (?,?,?,?,?,?)');
     $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $offer1]);
     depositToAccount($transferCode);
+    die();
   } else {
    echo "woops something went wrong";
   }
@@ -121,3 +127,43 @@ $response = json_decode($response, true);
 print_r($response);
 } catch (\Exception $e) {
 return "Error occured!" . $e;}};
+
+// Funtion som plockar ut bokade datum i datubasen för det billigaste rummet
+function bookedRooms ($roomKind) {
+global $db;
+$statement = $db->prepare("SELECT arrival, departure
+FROM bookings
+WHERE room = '$roomKind'");
+$statement->execute();
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+$roomKind = new Calendar;
+$roomKind->useSundayStartingDate();
+// $events = array();
+
+
+
+foreach ($result as $value){
+$arrivalDate = $value['arrival'];
+$departureDate = $value['departure'];
+// $events[] = array(
+//                     'start' => `$arrivalDate`,
+//                     'end' => `$departureDate`,
+//                     'summary' => 'Bokked',
+//                     'mask' => true
+// );
+// $calendar->addEvents($events);
+$roomKind->addEvent($arrivalDate, $departureDate, '', true);
+echo $arrivalDate, $departureDate;
+}
+echo $roomKind->display(date('Y-m-d'));
+
+die();
+
+};
+
+
+
+
+
+
