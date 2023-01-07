@@ -1,8 +1,12 @@
 <?php
-declare(strict_types= 1);
+
+declare(strict_types=1);
 require(__DIR__ . '/vendor/autoload.php');
+
 use GuzzleHttp\Client;
+
 require 'vendor/autoload.php';
+
 use benhall14\phpCalendar\Calendar as Calendar;
 
 
@@ -24,7 +28,7 @@ function connect(string $dbName): object
                     departure DATE,
                     room TEXT,
                     totalCost INTEGER,
-                    offer1 TEXT
+                    features TEXT
                 )");
     } catch (PDOException $e) {
         echo "Failed to connect to the database";
@@ -60,18 +64,19 @@ function isValidUuid(string $uuid): bool
 }
 
 
-function date_range($first, $last, $step = '+1 day', $output_format = 'd-m-Y' ) {
+function date_range($first, $last, $step = '+1 day', $output_format = 'd-m-Y')
+{
 
-$dates = array();
-$current = strtotime($first);
-$last = strtotime($last);
+    $dates = array();
+    $current = strtotime($first);
+    $last = strtotime($last);
 
-while( $current <= $last ) {
+    while ($current <= $last) {
 
-$dates[] = date($output_format, $current);
-$current = strtotime($step, $current);
-}
-return($dates);
+        $dates[] = date($output_format, $current);
+        $current = strtotime($step, $current);
+    }
+    return ($dates);
 }
 
 
@@ -81,70 +86,80 @@ return($dates);
 //Funktion som kollar transferCode
 function checkTransferCode($transferCode, $totalCost): string | bool
 {
-if (!isValidUuid($transferCode)) {
-return "Invalid transferCode format";
-} else {
-$client = new GuzzleHttp\Client();
-$options = [
-'form_params' => [
-"transferCode" => $transferCode, "totalcost" => $totalCost]];
-try {
-$response = $client->post("https://www.yrgopelago.se/centralbank/transferCode", $options);
-$response = $response->getBody()->getContents();
-$response = json_decode($response, true);
-print_r($response);
-} catch (\Exception $e) {
-return "Error occured!" . $e;}
-if (array_key_exists("error", $response)) {
-if ($response["error"] == "Not a valid GUID") {
- //The banks error message for a transferCode not being valid for enough can be misleading.
-return "An error has occured! $response[error]. This could be due to your Transfercode not being vaild for enough credit.";}
-return "An error has occured! $response[error]";}
-if (!array_key_exists("amount", $response) || $response["amount"] < $totalCost) {
-return "Transfer code is not valdid for enough money.";}}
-return true;
+    if (!isValidUuid($transferCode)) {
+        return "Invalid transferCode format";
+    } else {
+        $client = new GuzzleHttp\Client();
+        $options = [
+            'form_params' => [
+                "transferCode" => $transferCode, "totalcost" => $totalCost
+            ]
+        ];
+        try {
+            $response = $client->post("https://www.yrgopelago.se/centralbank/transferCode", $options);
+            $response = $response->getBody()->getContents();
+            $response = json_decode($response, true);
+            print_r($response);
+        } catch (\Exception $e) {
+            return "Error occured!" . $e;
+        }
+        if (array_key_exists("error", $response)) {
+            if ($response["error"] == "Not a valid GUID") {
+                //The banks error message for a transferCode not being valid for enough can be misleading.
+                return "An error has occured! $response[error]. This could be due to your Transfercode not being vaild for enough credit.";
+            }
+            return "An error has occured! $response[error]";
+        }
+        if (!array_key_exists("amount", $response) || $response["amount"] < $totalCost) {
+            return "Transfer code is not valdid for enough money.";
+        }
+    }
+    return true;
 }
 
 //Gör funktion som lägger in pengarna på ditt konto. DENNA FUNKAR INTE!
 
-function depositToAccount($transferCode): string | bool {
-$client = new GuzzleHttp\Client();
-$options = [
-'form_params' => [
-"user" => "Simon",
-"transferCode" => $transferCode]
-];
-try {
-$result = $client->post("https://www.yrgopelago.se/centralbank/deposit", $options);
-$result = $result->getBody()->getContents();
-$result = json_decode($result, true);
-return true;
-} catch (\Exception $e) {
-return "Error occured!" . $e;}
+function depositToAccount($transferCode): string | bool
+{
+    $client = new GuzzleHttp\Client();
+    $options = [
+        'form_params' => [
+            "user" => "Simon",
+            "transferCode" => $transferCode
+        ]
+    ];
+    try {
+        $result = $client->post("https://www.yrgopelago.se/centralbank/deposit", $options);
+        $result = $result->getBody()->getContents();
+        $result = json_decode($result, true);
+        return true;
+    } catch (\Exception $e) {
+        return "Error occured!" . $e;
+    }
 };
 
 // Funtion som plockar ut bokade datum i datubasen för det specifika rummet och målar upp en kalender
-function bookedRooms ($roomKind) {
-global $db;
-$statement = $db->prepare("SELECT arrival, departure
+function bookedRooms($roomKind)
+{
+    global $db;
+    $statement = $db->prepare("SELECT arrival, departure
 FROM bookings
 WHERE room = '$roomKind'");
-$statement->execute();
-$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-$roomKind = new Calendar;
-$roomKind->useSundayStartingDate();
+    $roomKind = new Calendar;
+    $roomKind->useSundayStartingDate();
 
-foreach ($result as $value){
-$arrivalDate = $value['arrival'];
-$departureDate = $value['departure'];
-$roomKind->addEvent($arrivalDate, $departureDate, '', true);
-echo $arrivalDate, $departureDate;
-}
-echo $roomKind->display(date('Y-01-01'));
+    foreach ($result as $value) {
+        $arrivalDate = $value['arrival'];
+        $departureDate = $value['departure'];
+        $roomKind->addEvent($arrivalDate, $departureDate, '', true);
+        echo $arrivalDate, $departureDate;
+    }
+    echo $roomKind->display(date('Y-01-01'));
 
-die();
-
+    die();
 };
 
 
@@ -152,65 +167,65 @@ die();
 if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
 
 
-                    $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
-                    $arrival = $_POST["arrival"];
-                    $departure = $_POST["departure"];
-                    $room = $_POST["room"];
-                    $totalCost = $_POST["totalCost"];
+    $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
+    $arrival = $_POST["arrival"];
+    $departure = $_POST["departure"];
+    $room = $_POST["room"];
+    $totalCost = $_POST["totalCost"];
 
-                    if (!empty($_post["offer1"])) {
-                    $offer1 = $_POST["offer1"];
-                    }
+    if (!empty($_POST["options"])) {
+        $features = implode(',', $_POST['options']);
+    }
 
+    $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
 
-                  $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
-
-
-
-                  // Kolla så att datumet inte redan är bokat
-                  global $db;
-                   global $dateFree;
-                  $statement = $db->prepare("SELECT arrival, departure
+    // Kolla så att datumet inte redan är bokat
+    global $db;
+    global $dateFree;
+    $statement = $db->prepare("SELECT arrival, departure
                   FROM bookings
                   WHERE room = '$room'");
-                  $statement->execute();
-                  $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                  $dateFree = true;
+    $dateFree = true;
 
-                  foreach ($result as $value){
-                  $arrivalDate = $value['arrival'];
-                  $departureDate = $value['departure'];
-                  $period = date_range($arrivalDate, $departureDate, "+1 day", "Y-m-d");
+    foreach ($result as $value) {
+        $arrivalDate = $value['arrival'];
+        $departureDate = $value['departure'];
+        $period = date_range($arrivalDate, $departureDate, "+1 day", "Y-m-d");
 
-                  foreach ($period as $value) {
-                  if ($arrival === $value || $departure === $value){
-                  Echo "Sorry the date is currently booked";
-                  $dateFree = false;}
-                  }
-                  }
+        foreach ($period as $value) {
+            if ($arrival === $value || $departure === $value) {
+                echo "Sorry the date is currently booked";
+                $dateFree = false;
+            }
+        }
+    }
+    //Check if everything is in order
+    if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
+        $goodToGo = true;
+    } else {
+        echo "woops something went wrong";
+        die();
+    }
+};
+global $goodToGo;
 
-
-                    if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
-                    $deposit = depositToAccount($transferCode);
-                    if (!empty($_post["offer1"])) {
-                      $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,offer1) VALUES (?,?,?,?,?,?)');
-                      $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $offer1]);
-                      echo "Booking successfull";
-
-
-                      die();
-                    } else {
-                    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
-                      $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
-                      echo "Booking successfull";
-
-                    }
-                    } else {
-                     echo "woops something went wrong";
-                     die();
-                    }
-                  };
+//If everything is in order register the booking!
+if (!empty($_POST["options"]) && $goodToGo === true) {
+    $deposit = depositToAccount($transferCode);
+    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,features) VALUES (?,?,?,?,?,?)');
+    $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $features]);
+    echo "Booking successfull";
+    die();
+} else if ($goodToGo === true) {
+    $deposit = depositToAccount($transferCode);
+    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
+    $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
+    echo "Booking successfull";
+    die();
+};
 
 //  $bookingResponse = [
 // "island" => "Spaceshuttle island",
@@ -222,9 +237,3 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 // "features" => $offer1,
 // "additional_info" => "Very good. Enjoy your stay. But not too much, you might never leave."];
 //  echo json_encode($bookingResponse);
-
-
-
-
-
-

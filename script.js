@@ -5,7 +5,6 @@ const selectedRoom = document.querySelector('#room');
 const price = document.querySelector('#totalCost');
 const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
-console.log(form, selectedRoom, price, arrival, departure);
 let offer1Checked;
 
 function getCheckboxStatus() {
@@ -43,6 +42,8 @@ function priceCalculator() {
   } else {
     price.value = roomprice * totalDays;
   }
+
+  //Checks features and adds it to price
   if (offer1Checked === true) {
     price.value = Number(price.value) + 10;
   }
