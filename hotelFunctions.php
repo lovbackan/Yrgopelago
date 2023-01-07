@@ -155,7 +155,6 @@ WHERE room = '$roomKind'");
         $arrivalDate = $value['arrival'];
         $departureDate = $value['departure'];
         $roomKind->addEvent($arrivalDate, $departureDate, '', true);
-        echo $arrivalDate, $departureDate;
     }
     echo $roomKind->display(date('Y-01-01'));
 
