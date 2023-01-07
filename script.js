@@ -54,3 +54,5 @@ form.addEventListener('change', () => {
   priceCalculator();
   price.value = Math.round(price.value);
 });
+
+console.log('Javascript is found!');

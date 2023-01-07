@@ -234,6 +234,6 @@ if (!empty($_POST["options"]) && $goodToGo === true) {
 // "departure_date" => $departure,
 // "total_cost" => $totalCost,
 // "stars" => $stars,
-// "features" => $offer1,
-// "additional_info" => "Very good. Enjoy your stay. But not too much, you might never leave."];
+// "features" => $features,
+// "additional_info" => ""];
 //  echo json_encode($bookingResponse);

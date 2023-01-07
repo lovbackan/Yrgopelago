@@ -10,16 +10,22 @@ require("./hotelFunctions.php");
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <nav>
-        <a href="./index.php">Home</a>
-        <a href="./standard.php">Standard</a>
-        <a href="./economy.php">Economy</a>
-        <a href="./luxury.php">Luxury</a>
-    </nav>
+    <title>Standard Room</title>
+    <script defer src="./script.js"></script>
 </head>
 
+
+
 <body>
+    <header>
+        <nav>
+            <a href="./index.php">Home</a>
+            <a href="./standard.php">Standard</a>
+            <a href="./economy.php">Economy</a>
+            <a href="./luxury.php">Luxury</a>
+        </nav>
+    </header>
+
     <h1>Under Construction!</h1>
     <h2>30% discount if you stay longer than one night!</h2>
     <form id="inputForm" method="post">
@@ -48,7 +54,6 @@ require("./hotelFunctions.php");
     </form>
     <h2>Standard</h2>
     <?php bookedRooms('Standard'); ?>
-    <script src="./script.js"></script>
 </body>
 
 </html>
