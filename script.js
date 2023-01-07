@@ -52,4 +52,5 @@ function priceCalculator() {
 form.addEventListener('change', () => {
   getCheckboxStatus();
   priceCalculator();
+  price.value = Math.round(price.value);
 });

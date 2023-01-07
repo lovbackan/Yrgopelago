@@ -1,6 +1,5 @@
 <?php
 require("./hotelFunctions.php");
-// date_range("2023-01-01", "2023-01-05", "+1 day", "Y-m-d");
 
 ?>
 <!DOCTYPE html>

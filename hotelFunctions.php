@@ -141,7 +141,7 @@ $departureDate = $value['departure'];
 $roomKind->addEvent($arrivalDate, $departureDate, '', true);
 echo $arrivalDate, $departureDate;
 }
-echo $roomKind->display(date('Y-m-d'));
+echo $roomKind->display(date('Y-01-01'));
 
 die();
 
@@ -211,7 +211,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 // "departure_date" => $departure,
 // "total_cost" => $totalCost,
 // "stars" => $stars,
-// "features" => $features,
+// "features" => $offer1,
 // "additional_info" => "Very good. Enjoy your stay. But not too much, you might never leave."];
 //  echo json_encode($bookingResponse);
 
