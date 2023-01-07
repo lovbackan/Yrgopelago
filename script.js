@@ -37,15 +37,14 @@ function priceCalculator() {
     roomprice = 0;
   }
 
-  //DISCOUNT
+  //DISCOUNT if stayed longer than 1 day, and also add features to totalcost
   if (totalDays > 1) {
-    if (offer1Checked === true) {
-      price.value = roomprice * totalDays * 0.7 + 10;
-    } else {
-      price.value = roomprice * totalDays * 0.7;
-    }
+    price.value = roomprice * totalDays * 0.7;
   } else {
     price.value = roomprice * totalDays;
+  }
+  if (offer1Checked === true) {
+    price.value = Number(price.value) + 10;
   }
 }
 

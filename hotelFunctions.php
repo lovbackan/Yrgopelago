@@ -149,7 +149,7 @@ die();
 
 
 //DENNA KOD FIXAR BOKNINGEN
-if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"], $_POST["offer1"]) || isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
+if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
 
 
                     $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
@@ -157,7 +157,10 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
                     $departure = $_POST["departure"];
                     $room = $_POST["room"];
                     $totalCost = $_POST["totalCost"];
+
+                    if (!empty($_post["offer1"])) {
                     $offer1 = $_POST["offer1"];
+                    }
 
 
                   $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
@@ -189,15 +192,20 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
 
                     if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
-                    //Min deposit funktion fungerar ej!
                     $deposit = depositToAccount($transferCode);
+                    if (!empty($_post["offer1"])) {
                       $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,offer1) VALUES (?,?,?,?,?,?)');
                       $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $offer1]);
                       echo "Booking successfull";
 
 
                       die();
+                    } else {
+                    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
+                      $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
+                      echo "Booking successfull";
 
+                    }
                     } else {
                      echo "woops something went wrong";
                      die();
