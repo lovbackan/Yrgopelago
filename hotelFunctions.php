@@ -16,7 +16,7 @@ function connect(string $dbName): object
     $dbPath = __DIR__ . '/' . $dbName;
     $db = "sqlite:$dbPath";
 
-    // Open the database file and catch the exception if it fails.
+    // Open the database file and catch the exception if it fails. If connection works then create the tables for the database if they dont already exists.
     try {
         $db = new PDO($db);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -31,10 +31,11 @@ function connect(string $dbName): object
                     features TEXT
                 )");
     } catch (PDOException $e) {
-        echo "Failed to connect to the database";
+        echo '<script>alert("Failed to connect to database")</script>';
+        return "Failed to connect to the database";
         throw $e;
     }
-    echo "DB conncetion works";
+    // return "DB conncetion works";
     return $db;
 }
 
@@ -63,7 +64,7 @@ function isValidUuid(string $uuid): bool
     return true;
 }
 
-
+//Function that checks the date range between two dates!
 function date_range($first, $last, $step = '+1 day', $output_format = 'd-m-Y')
 {
 
@@ -83,10 +84,11 @@ function date_range($first, $last, $step = '+1 day', $output_format = 'd-m-Y')
 
 
 
-//Funktion som kollar transferCode
+//Function that checks if transfercode is valid and returns true if it is.
 function checkTransferCode($transferCode, $totalCost): string | bool
 {
     if (!isValidUuid($transferCode)) {
+        echo '<script>alert("Invalid transfer code format")</script>';
         return "Invalid transferCode format";
     } else {
         $client = new GuzzleHttp\Client();
@@ -99,25 +101,26 @@ function checkTransferCode($transferCode, $totalCost): string | bool
             $response = $client->post("https://www.yrgopelago.se/centralbank/transferCode", $options);
             $response = $response->getBody()->getContents();
             $response = json_decode($response, true);
-            print_r($response);
         } catch (\Exception $e) {
             return "Error occured!" . $e;
         }
         if (array_key_exists("error", $response)) {
             if ($response["error"] == "Not a valid GUID") {
                 //The banks error message for a transferCode not being valid for enough can be misleading.
+                echo '<script>alert("Transfer code is not valid")</script>';
                 return "An error has occured! $response[error]. This could be due to your Transfercode not being vaild for enough credit.";
             }
             return "An error has occured! $response[error]";
         }
         if (!array_key_exists("amount", $response) || $response["amount"] < $totalCost) {
+            echo '<script>alert("Welcome to Geeks for Geeks")</script>';
             return "Transfer code is not valdid for enough money.";
         }
     }
     return true;
 }
 
-//Gör funktion som lägger in pengarna på ditt konto. DENNA FUNKAR INTE!
+//Function that deposit the money to my bank account
 
 function depositToAccount($transferCode): string | bool
 {
@@ -134,11 +137,12 @@ function depositToAccount($transferCode): string | bool
         $result = json_decode($result, true);
         return true;
     } catch (\Exception $e) {
+        echo '<script>alert("Something went wrong with the deposit!")</script>';
         return "Error occured!" . $e;
     }
 };
 
-// Funtion som plockar ut bokade datum i datubasen för det specifika rummet och målar upp en kalender
+//Function that checks the database for the specific room and creates a calender where the booked dates are red!
 function bookedRooms($roomKind)
 {
     global $db;
@@ -162,10 +166,8 @@ WHERE room = '$roomKind'");
 };
 
 
-//DENNA KOD FIXAR BOKNINGEN
+//This code does most of the work, on submit, check if transfercode is valid, checks if the posted date is free, checks if
 if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
-
-
     $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
     $arrival = $_POST["arrival"];
     $departure = $_POST["departure"];
@@ -178,7 +180,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
     $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
 
-    // Kolla så att datumet inte redan är bokat
+    // The following code grabs all the arrival and departures for the specific room from the database
     global $db;
     global $dateFree;
     $statement = $db->prepare("SELECT arrival, departure
@@ -187,8 +189,8 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    $dateFree = true;
-
+    $dateFree; // var true innan
+    // For each row in database check the arrival and departure and create a period variable that stores all the dates inbetween arrival and departure and checks if the submitted dates collides with them.
     foreach ($result as $value) {
         $arrivalDate = $value['arrival'];
         $departureDate = $value['departure'];
@@ -196,33 +198,38 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
         foreach ($period as $value) {
             if ($arrival === $value || $departure === $value) {
-                echo "Sorry the date is currently booked";
+                echo '<script>alert("Sorry the date is currently booked")</script>';
+                return "Sorry the date is currently booked";
                 $dateFree = false;
+            } else {
+                $dateFree = true;
             }
         }
     }
-    //Check if everything is in order
+    //Check if everything is in order and is good to go!
     if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
         $goodToGo = true;
     } else {
-        echo "woops something went wrong";
+        echo "woops something went wrong with your booking, please try again!";
         die();
     }
 };
 global $goodToGo;
 
-//If everything is in order register the booking!
+//If everything is good to go, register the booking!
 if (!empty($_POST["options"]) && $goodToGo === true) {
     $deposit = depositToAccount($transferCode);
     $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,features) VALUES (?,?,?,?,?,?)');
     $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $features]);
-    echo "Booking successfull";
+    header("location: http://localhost:8000/success.php");
+    // echo '<script>alert("Your booking has been registered, we hope u enjoy ur stay at groundbreaker!")</script>';
     die();
 } else if ($goodToGo === true) {
     $deposit = depositToAccount($transferCode);
     $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
     $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
-    echo "Booking successfull";
+    header("location: http://localhost:8000/success.php");
+    // echo '<script>alert("Your booking has been registered, we hope u enjoy ur stay at groundbreaker!")</script>';
     die();
 };
 
