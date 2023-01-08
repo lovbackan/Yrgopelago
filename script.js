@@ -6,15 +6,27 @@ const price = document.querySelector('#totalCost');
 const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
 let offer1Checked;
+let offer2Checked;
+let offer3Checked;
 
 function getCheckboxStatus() {
   const offer1 = document.querySelector('#offer1').checked;
   if (offer1) {
     offer1Checked = true;
-    console.log('yes');
   } else {
-    console.log('no');
     offer1Checked = false;
+  }
+  const offer2 = document.querySelector('#offer2').checked;
+  if (offer2) {
+    offer2Checked = true;
+  } else {
+    offer2Checked = false;
+  }
+  const offer3 = document.querySelector('#offer3').checked;
+  if (offer3) {
+    offer3Checked = true;
+  } else {
+    offer3Checked = false;
   }
 }
 
@@ -46,6 +58,12 @@ function priceCalculator() {
   //Checks features and adds it to price
   if (offer1Checked === true) {
     price.value = Number(price.value) + 10;
+  }
+  if (offer2Checked === true) {
+    price.value = Number(price.value) + 15;
+  }
+  if (offer3Checked === true) {
+    price.value = Number(price.value) + 20;
   }
 }
 

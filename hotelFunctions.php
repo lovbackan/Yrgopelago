@@ -83,7 +83,8 @@ function checkTransferCode($transferCode, $totalCost): string | bool
 {
     if (!isValidUuid($transferCode)) {
         echo '<script>alert("Invalid transfer code format")</script>';
-        return "Invalid transferCode format";
+        // return "Invalid transferCode format";
+        return false;
     } else {
         $client = new GuzzleHttp\Client();
         $options = [
@@ -97,19 +98,23 @@ function checkTransferCode($transferCode, $totalCost): string | bool
             $response = json_decode($response, true);
         } catch (\Exception $e) {
             echo '<script>alert("Transfer code is not valid")</script>';
-            return "Error occured!" . $e;
+            // return "Error occured!" . $e;
+            return false;
         }
         if (array_key_exists("error", $response)) {
             if ($response["error"] == "Not a valid GUID") {
                 //The banks error message for a transferCode not being valid for enough can be misleading.
                 echo '<script>alert("Transfer code is not valid")</script>';
-                return "An error has occured! $response[error]. This could be due to your Transfercode not being vaild for enough credit.";
+                // return "An error has occured! $response[error]. This could be due to your Transfercode not being vaild for enough credit.";
+                return false;
             }
-            return "An error has occured! $response[error]";
+            // return "An error has occured! $response[error]";
+            return false;
         }
         if (!array_key_exists("amount", $response) || $response["amount"] < $totalCost) {
             echo '<script>alert("Sorry your transfer code does not contain enough money")</script>';
-            return "Transfer code is not valdid for enough money.";
+            // return "Transfer code is not valdid for enough money.";
+            return false;
         }
     }
     return true;
@@ -176,6 +181,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
         $features = "none";
     }
 
+
     $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
     // The following code grabs all the arrival and departures for the specific room from the database
     $statement = $db->prepare("SELECT arrival, departure
@@ -185,21 +191,27 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     // For each row in database check the arrival and departure and create a period variable that stores all the dates inbetween arrival and departure and checks if the submitted dates collides with them.
-    foreach ($result as $value) {
-        $arrivalDate = $value['arrival'];
-        $departureDate = $value['departure'];
-        $period = date_range($arrivalDate, $departureDate, "+1 day", "Y-m-d");
 
-        foreach ($period as $value) {
-            if ($arrival === $value || $departure === $value) {
-                echo '<script>alert("Sorry the date is currently booked")</script>';
-                $dateFree = false;
-                return "Sorry the date is currently booked";
-            } else {
-                $dateFree = true;
+    if (!empty($result)) {
+        foreach ($result as $value) {
+            $arrivalDate = $value['arrival'];
+            $departureDate = $value['departure'];
+            $period = date_range($arrivalDate, $departureDate, "+1 day", "Y-m-d");
+
+            foreach ($period as $value) {
+                if ($arrival === $value || $departure === $value) {
+                    echo '<script>alert("Sorry the date is currently booked")</script>';
+                    $dateFree = false;
+                    return "Sorry the date is currently booked";
+                } else {
+                    $dateFree = true;
+                }
             }
         }
+    } else {
+        $dateFree = true;
     };
+    global $dateFree;
 
     //Check if everything is in order and is good to go!
     if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
@@ -216,9 +228,9 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
         "arrival_date" => $arrival,
         "departure_date" => $departure,
         "total_cost" => $totalCost,
-        // "stars" => $stars,
+        "stars" => "3",
         "features" => $features,
-        "additional_info" => ""
+        "additional_info" => "Thank you for chosing Groundbreaker as your hotel of choice!"
     ];
 
     //If everything is good to go, register the booking and echo the json bookingresponse!
