@@ -5,6 +5,8 @@ const selectedRoom = document.querySelector('#room');
 const price = document.querySelector('#totalCost');
 const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
+const heroButton = document.querySelector('.buy');
+console.log(heroButton);
 let offer1Checked;
 let offer2Checked;
 let offer3Checked;
@@ -73,4 +75,6 @@ form.addEventListener('change', () => {
   price.value = Math.round(price.value);
 });
 
-console.log('Javascript is found!');
+heroButton.addEventListener('click', () => {
+  window.scrollTo(0, document.body.scrollHeight);
+});

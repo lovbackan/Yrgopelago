@@ -160,7 +160,7 @@ WHERE room = '$roomKind'");
         $departureDate = $value['departure'];
         $roomKind->addEvent($arrivalDate, $departureDate, '', true);
     }
-    echo $roomKind->display(date('Y-01-01'));
+    echo $roomKind->display(date('Y-01-01'), 'pink');
 
     die();
 };
@@ -190,7 +190,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    // For each row in database check the arrival and departure and create a period variable that stores all the dates inbetween arrival and departure and checks if the submitted dates collides with them.
+    // If result is not empty -> For each row in database check the arrival and departure and create a period variable that stores all the dates inbetween arrival and departure and checks if the submitted dates collides with them.
 
     if (!empty($result)) {
         foreach ($result as $value) {

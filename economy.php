@@ -7,6 +7,7 @@ require("./hotelFunctions.php");
 
 <head>
     <link href="styles.css" rel="stylesheet" />
+    <link href="fonts.css" rel="stylesheet" />
     <script defer src="./script.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,14 +18,24 @@ require("./hotelFunctions.php");
 <body>
     <header>
         <nav>
-            <a href="./index.php">Home</a>
-            <a href="./standard.php">Standard</a>
-            <a href="./economy.php">Economy</a>
-            <a href="./luxury.php">Luxury</a>
+            <h2>Groundbreaker</h2>
+            <div class="navInfo">
+                <a href="./index.php">Home</a>
+                <a href="./economy.php">Economy</a>
+                <a href="./standard.php">Standard</a>
+                <a href="./luxury.php">Luxury</a>
+            </div>
         </nav>
     </header>
 
-    <h1>Under Construction!</h1>
+    <section class="hero">
+        <img class="heroDesktop" src="/pictures/budget-room.jpg" />
+        <div class="heroInfo">
+            <h2>Introducing the Luxury Suite</h2>
+            <p>When money aint a problem</p>
+            <button class="buy">Make reservation</button>
+        </div>
+    </section>
     <h2>30% discount if you stay longer than one night!</h2>
     <form id="inputForm" method="post">
         <label for="transferCode">Transfer Code</label>
