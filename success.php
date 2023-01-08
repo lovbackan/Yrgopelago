@@ -24,6 +24,10 @@ require("./hotelFunctions.php");
         </nav>
     </header>
     <h1>Your booking is successfull, we hope you enjoy your stay!</h1>
+    <h2>Info</h2>
+
+    <?php echo $bookingResponse; ?>
+
 </body>
 
 </html>

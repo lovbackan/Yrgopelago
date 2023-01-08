@@ -9,8 +9,6 @@ require 'vendor/autoload.php';
 
 use benhall14\phpCalendar\Calendar as Calendar;
 
-
-
 function connect(string $dbName): object
 {
     $dbPath = __DIR__ . '/' . $dbName;
@@ -80,10 +78,6 @@ function date_range($first, $last, $step = '+1 day', $output_format = 'd-m-Y')
     return ($dates);
 }
 
-
-
-
-
 //Function that checks if transfercode is valid and returns true if it is.
 function checkTransferCode($transferCode, $totalCost): string | bool
 {
@@ -102,6 +96,7 @@ function checkTransferCode($transferCode, $totalCost): string | bool
             $response = $response->getBody()->getContents();
             $response = json_decode($response, true);
         } catch (\Exception $e) {
+            echo '<script>alert("Transfer code is not valid")</script>';
             return "Error occured!" . $e;
         }
         if (array_key_exists("error", $response)) {
@@ -113,7 +108,7 @@ function checkTransferCode($transferCode, $totalCost): string | bool
             return "An error has occured! $response[error]";
         }
         if (!array_key_exists("amount", $response) || $response["amount"] < $totalCost) {
-            echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+            echo '<script>alert("Sorry your transfer code does not contain enough money")</script>';
             return "Transfer code is not valdid for enough money.";
         }
     }
@@ -174,22 +169,21 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     $room = $_POST["room"];
     $totalCost = $_POST["totalCost"];
 
+    // this step is neccessary because otherwise it will show an error that features does not exist!
     if (!empty($_POST["options"])) {
         $features = implode(',', $_POST['options']);
+    } else {
+        $features = "none";
     }
 
     $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
-
     // The following code grabs all the arrival and departures for the specific room from the database
-    global $db;
-    global $dateFree;
     $statement = $db->prepare("SELECT arrival, departure
                   FROM bookings
                   WHERE room = '$room'");
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    $dateFree; // var true innan
     // For each row in database check the arrival and departure and create a period variable that stores all the dates inbetween arrival and departure and checks if the submitted dates collides with them.
     foreach ($result as $value) {
         $arrivalDate = $value['arrival'];
@@ -199,47 +193,46 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
         foreach ($period as $value) {
             if ($arrival === $value || $departure === $value) {
                 echo '<script>alert("Sorry the date is currently booked")</script>';
-                return "Sorry the date is currently booked";
                 $dateFree = false;
+                return "Sorry the date is currently booked";
             } else {
                 $dateFree = true;
             }
         }
-    }
+    };
+
     //Check if everything is in order and is good to go!
     if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
         $goodToGo = true;
     } else {
-        echo "woops something went wrong with your booking, please try again!";
-        die();
+        $goodToGo = false;
+        echo '<script>alert("Woops something went wrong with your booking please try again!")</script>';
     }
-};
-global $goodToGo;
 
-//If everything is good to go, register the booking!
-if (!empty($_POST["options"]) && $goodToGo === true) {
-    $deposit = depositToAccount($transferCode);
-    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,features) VALUES (?,?,?,?,?,?)');
-    $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $features]);
-    header("location: http://localhost:8000/success.php");
-    // echo '<script>alert("Your booking has been registered, we hope u enjoy ur stay at groundbreaker!")</script>';
-    die();
-} else if ($goodToGo === true) {
-    $deposit = depositToAccount($transferCode);
-    $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
-    $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
-    header("location: http://localhost:8000/success.php");
-    // echo '<script>alert("Your booking has been registered, we hope u enjoy ur stay at groundbreaker!")</script>';
-    die();
-};
+    //The booking response!
+    $bookingResponse = [
+        "island" => "Spaceshuttle island",
+        "hotel" => "Groundbreaker",
+        "arrival_date" => $arrival,
+        "departure_date" => $departure,
+        "total_cost" => $totalCost,
+        // "stars" => $stars,
+        "features" => $features,
+        "additional_info" => ""
+    ];
 
-//  $bookingResponse = [
-// "island" => "Spaceshuttle island",
-// "hotel" => "Groundbreaker",
-// "arrival_date" => $arrival,
-// "departure_date" => $departure,
-// "total_cost" => $totalCost,
-// "stars" => $stars,
-// "features" => $features,
-// "additional_info" => ""];
-//  echo json_encode($bookingResponse);
+    //If everything is good to go, register the booking and echo the json bookingresponse!
+    if (!empty($_POST["options"]) && $goodToGo === true) {
+        $deposit = depositToAccount($transferCode);
+        $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,features) VALUES (?,?,?,?,?,?)');
+        $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $features]);
+        echo json_encode($bookingResponse);
+        die();
+    } else if ($goodToGo === true) {
+        $deposit = depositToAccount($transferCode);
+        $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
+        $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
+        echo json_encode($bookingResponse);
+        die();
+    };
+}

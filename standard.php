@@ -14,8 +14,6 @@ require("./hotelFunctions.php");
     <script defer src="./script.js"></script>
 </head>
 
-
-
 <body>
     <header>
         <nav>
