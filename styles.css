@@ -1,0 +1,84 @@
+body {
+  color: black;
+  align-content: center;
+  flex-direction: column;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: white;
+  background-color: black;
+  width: 100%;
+}
+
+header {
+  height: 3.75rem;
+  width: 100%;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav h2 {
+  padding-left: 1rem;
+}
+
+.navInfo {
+  display: flex;
+  position: absolute;
+  right: 0;
+  align-items: center;
+  cursor: pointer;
+  padding-right: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  padding-right: 1rem;
+}
+
+.heroDesktop {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  object-fit: fill;
+}
+.heroInfo {
+  right: 0;
+  position: absolute;
+  top: 0;
+  margin-top: 10rem;
+  text-align: center;
+  margin-right: 10rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroInfo button {
+  margin-top: 4rem;
+}
+
+button {
+  background-color: black;
+  border-radius: 30px;
+  border-color: white;
+  border-width: 1px;
+  border-style: groove;
+  font-family: 'interMedium';
+  color: white;
+  align-self: center;
+  position: absolute;
+
+  height: 2.75rem;
+  /* margin-bottom: 98%; */
+  background-color: black;
+}
