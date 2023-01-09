@@ -48,7 +48,7 @@ require("./hotelFunctions.php");
             <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-01" max="2023-01-31">
             <label for="room" class="form-control">Room</label>
             <select required name=room id="room">
-                <option disabled selected value>Select a room!</option>
+                <option disabled selected value=>Select a room!</option>
                 <option value="Economy">Economy</option>
                 <option value="Standard">Standard</option>
                 <option value="Luxury">Luxury</option>
@@ -60,12 +60,10 @@ require("./hotelFunctions.php");
                 <input type="checkbox" id="offer1" name="options[]" value="1" />
                 <label for="offer2" class="form-control">Offer 2</label>
                 <input type="checkbox" id="offer2" name="options[]" value="2" />
-                <label for="offer3" class="form-control">Offer 3</label>
-                <input type="checkbox" id="offer3" name="options[]" value="3" />
             </div>
             <button type="submit" id="bookButton">Book!</button>
         </form>
-        <div class="calendar">
+        <div class="calendarBox">
             <?php bookedRooms('Luxury'); ?>
         </div>
     </section>

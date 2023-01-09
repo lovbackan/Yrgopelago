@@ -6,7 +6,6 @@ const price = document.querySelector('#totalCost');
 const arrival = document.querySelector('#arrival');
 const departure = document.querySelector('#departure');
 const heroButton = document.querySelector('.buy');
-console.log(heroButton);
 let offer1Checked;
 let offer2Checked;
 let offer3Checked;
@@ -24,12 +23,12 @@ function getCheckboxStatus() {
   } else {
     offer2Checked = false;
   }
-  const offer3 = document.querySelector('#offer3').checked;
-  if (offer3) {
-    offer3Checked = true;
-  } else {
-    offer3Checked = false;
-  }
+  // const offer3 = document.querySelector('#offer3').checked;
+  // if (offer3) {
+  //   offer3Checked = true;
+  // } else {
+  //   offer3Checked = false;
+  // }
 }
 
 function priceCalculator() {
@@ -41,11 +40,11 @@ function priceCalculator() {
 
   let roomprice;
   if (roomOption === 'Economy') {
-    roomprice = 5;
+    roomprice = 3;
   } else if (roomOption === 'Standard') {
-    roomprice = 10;
+    roomprice = 4;
   } else if (roomOption === 'Luxury') {
-    roomprice = 15;
+    roomprice = 7;
   } else {
     roomprice = 0;
   }
@@ -59,22 +58,20 @@ function priceCalculator() {
 
   //Checks features and adds it to price
   if (offer1Checked === true) {
-    price.value = Number(price.value) + 10;
+    price.value = Number(price.value) + 3;
   }
   if (offer2Checked === true) {
-    price.value = Number(price.value) + 15;
-  }
-  if (offer3Checked === true) {
-    price.value = Number(price.value) + 20;
+    price.value = Number(price.value) + 5;
   }
 }
-
-form.addEventListener('change', () => {
-  getCheckboxStatus();
-  priceCalculator();
-  price.value = Math.round(price.value);
-});
 
 heroButton.addEventListener('click', () => {
   window.scrollTo(0, document.body.scrollHeight);
 });
+if (form) {
+  form.addEventListener('change', () => {
+    getCheckboxStatus();
+    priceCalculator();
+    price.value = Math.round(price.value);
+  });
+}

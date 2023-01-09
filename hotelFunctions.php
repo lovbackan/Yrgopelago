@@ -9,6 +9,8 @@ require 'vendor/autoload.php';
 
 use benhall14\phpCalendar\Calendar as Calendar;
 
+// $errors;
+
 function connect(string $dbName): object
 {
     $dbPath = __DIR__ . '/' . $dbName;
@@ -30,10 +32,9 @@ function connect(string $dbName): object
                 )");
     } catch (PDOException $e) {
         echo '<script>alert("Failed to connect to database")</script>';
-        return "Failed to connect to the database";
+        return "fail";
         throw $e;
     }
-    // return "DB conncetion works";
     return $db;
 }
 
@@ -83,7 +84,6 @@ function checkTransferCode($transferCode, $totalCost): string | bool
 {
     if (!isValidUuid($transferCode)) {
         echo '<script>alert("Invalid transfer code format")</script>';
-        // return "Invalid transferCode format";
         return false;
     } else {
         $client = new GuzzleHttp\Client();
@@ -97,25 +97,13 @@ function checkTransferCode($transferCode, $totalCost): string | bool
             $response = $response->getBody()->getContents();
             $response = json_decode($response, true);
         } catch (\Exception $e) {
-            echo '<script>alert("Transfer code is not valid")</script>';
-            // return "Error occured!" . $e;
-            return false;
-        }
-        if (array_key_exists("error", $response)) {
-            if ($response["error"] == "Not a valid GUID") {
-                //The banks error message for a transferCode not being valid for enough can be misleading.
-                echo '<script>alert("Transfer code is not valid")</script>';
-                // return "An error has occured! $response[error]. This could be due to your Transfercode not being vaild for enough credit.";
-                return false;
-            }
-            // return "An error has occured! $response[error]";
+            echo '<script>alert("Woops, problem with connection to API! Please contact Admin!)</script>';
             return false;
         }
         if (!array_key_exists("amount", $response) || $response["amount"] < $totalCost) {
-            echo '<script>alert("Sorry your transfer code does not contain enough money")</script>';
-            // return "Transfer code is not valdid for enough money.";
+            echo '<script>alert("Oh no! Either your transfer code has already been used, or the value of ur transferCode is lower than your bookings totalcost")</script>';
             return false;
-        }
+        };
     }
     return true;
 }
@@ -138,7 +126,6 @@ function depositToAccount($transferCode): string | bool
         return true;
     } catch (\Exception $e) {
         echo '<script>alert("Something went wrong with the deposit!")</script>';
-        return "Error occured!" . $e;
     }
 };
 
@@ -161,7 +148,7 @@ WHERE room = '$roomKind'");
         $roomKind->addEvent($arrivalDate, $departureDate, '', true);
     }
     echo $roomKind->display(date('Y-01-01'), 'pink');
-
+    //Behövs verkligen denna die?
     die();
 };
 
@@ -180,7 +167,16 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     } else {
         $features = "none";
     }
-
+    //I calculate the cost in javascript but since the json response needs to have a features cost, this code is necessary!
+    if ($features === '1') {
+        $featuresCost = 3;
+    } else if ($features === '2') {
+        $featuresCost = 5;
+    } else if ($features === '1,2') {
+        $featuresCost = 8;
+    } else if ($features === 'none') {
+        $featuresCost = 0;
+    };
 
     $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
     // The following code grabs all the arrival and departures for the specific room from the database
@@ -202,13 +198,14 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
                 if ($arrival === $value || $departure === $value) {
                     echo '<script>alert("Sorry the date is currently booked")</script>';
                     $dateFree = false;
-                    return "Sorry the date is currently booked";
+                    return;
                 } else {
                     $dateFree = true;
                 }
             }
         }
     } else {
+        //If databank is empty all the dates are free to book!
         $dateFree = true;
     };
     global $dateFree;
@@ -218,7 +215,6 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
         $goodToGo = true;
     } else {
         $goodToGo = false;
-        echo '<script>alert("Woops something went wrong with your booking please try again!")</script>';
     }
 
     //The booking response!
@@ -229,7 +225,7 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
         "departure_date" => $departure,
         "total_cost" => $totalCost,
         "stars" => "3",
-        "features" => $features,
+        "features" => ["name" => $features, "cost" => $featuresCost],
         "additional_info" => "Thank you for chosing Groundbreaker as your hotel of choice!"
     ];
 
@@ -238,12 +234,14 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
         $deposit = depositToAccount($transferCode);
         $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,features) VALUES (?,?,?,?,?,?)');
         $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $features]);
+        header('Content-Type: application/json');
         echo json_encode($bookingResponse);
         die();
     } else if ($goodToGo === true) {
         $deposit = depositToAccount($transferCode);
         $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
         $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
+        header('Content-Type: application/json');
         echo json_encode($bookingResponse);
         die();
     };

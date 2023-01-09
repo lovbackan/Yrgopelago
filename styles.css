@@ -126,9 +126,9 @@ form {
 form h2 {
   margin-bottom: 1rem;
 }
-.calendar {
-  height: 100vh;
-  width: 50%;
+.calendarBox {
+  width: 5rem;
+  height: 5rem;
 }
 
 #bookButton {
