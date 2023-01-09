@@ -30,7 +30,7 @@ require("./hotelFunctions.php");
     </header>
     <main>
         <section class="hero">
-            <img class="heroDesktop" src="/pictures/hero-home.jpg" />
+            <img class="heroDesktop" src="/pictures/2k/retouchedHero 1.jpg" />
             <div class="heroInfo">
                 <h2>Welcome to the Groundbreaker</h2>
                 <p>A hotel among the stars</p>

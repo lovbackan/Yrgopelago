@@ -29,7 +29,7 @@ require("./hotelFunctions.php");
     </header>
 
     <section class="hero">
-        <img class="heroDesktop" src="/pictures/standard-room.jpg" />
+        <img class="heroDesktop" src="/pictures/2k/SimonLovbacka_budget_room_in_space_hotel_view_over_earth_stunni_01029d48-87c5-4def-b308-89366b635feb.png" />
         <div class="heroInfo">
             <h2>Introducing the Luxury Suite</h2>
             <p>When money aint a problem</p>

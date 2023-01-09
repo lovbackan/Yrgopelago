@@ -29,7 +29,7 @@ require("./hotelFunctions.php");
     </header>
 
     <section class="hero">
-        <img class="heroDesktop" src="/pictures/budget-room.jpg" />
+        <img class="heroDesktop" src="/Pictures/2k/budget.png" />
         <div class="heroInfo">
             <h2>Introducing the Luxury Suite</h2>
             <p>When money aint a problem</p>
