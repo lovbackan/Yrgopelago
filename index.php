@@ -34,7 +34,7 @@ require("./hotelFunctions.php");
             <div class="heroInfo">
                 <h2>Welcome to the Groundbreaker</h2>
                 <p>A hotel among the stars</p>
-                <button class="buy">Make reservation</button>
+                <button class="buy">See info</button>
             </div>
         </section>
         <section class="sliderSection">
@@ -46,6 +46,9 @@ require("./hotelFunctions.php");
                     &#8250;
                 </button>
                 <div class="slides-container" id="slides-container">
+                    <div class="slide">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Y1qQZbTF8iQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
 
                     <div class="slide">
                         <img src="/Pictures/2k/retouchedHero.jpg" />
