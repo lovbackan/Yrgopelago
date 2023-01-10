@@ -37,7 +37,29 @@ require("./hotelFunctions.php");
                 <button class="buy">Make reservation</button>
             </div>
         </section>
+        <section class="sliderSection">
+            <div class="slider-wrapper">
+                <button class="slide-arrow" id="slide-arrow-prev">
+                    &#8249;
+                </button>
+                <button class="slide-arrow" id="slide-arrow-next">
+                    &#8250;
+                </button>
+                <div class="slides-container" id="slides-container">
 
+                    <div class="slide">
+                        <img src="/Pictures/2k/retouchedHero.jpg" />
+                    </div>
+                    <div class="slide">
+                        <img src="/Pictures/hero-home-original.jpg" />
+                    </div>
+                    <div class="slide">
+                        <img src="/Pictures/hotelGrid.png" />
+                    </div>
+
+                </div>
+            </div>
+        </section>
         <section class="island">
             <div class="islandInfo">
                 <h2>Welcome to Space-shuttle island</h2>

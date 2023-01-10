@@ -1,8 +1,4 @@
 body {
-  color: black;
-  align-content: center;
-  flex-direction: column;
-  font-size: 16px;
   padding: 0;
   margin: 0;
   color: white;
@@ -47,6 +43,13 @@ a {
   padding-right: 1rem;
 }
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .heroDesktop {
   width: 100%;
   height: 100vh;
@@ -54,18 +57,16 @@ a {
   object-fit: cover;
 }
 .heroInfo {
-  right: 0;
   position: absolute;
-  top: 0;
-  margin-top: 10rem;
   text-align: center;
-  margin-right: 10rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .heroInfo button {
-  margin-top: 4rem;
+  margin-top: 6.5rem;
   align-self: center;
   position: absolute;
 }
@@ -105,33 +106,39 @@ button {
   right: 0;
   width: 50%;
 }
-
-.formCalender {
-  width: 100%;
+.formCalenderSection {
   height: 100vh;
-  flex-direction: row;
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   height: 100vh;
   text-align: center;
   justify-content: center;
   padding-left: 1rem;
-  padding-right: 1rem;
+  /* align-content: space-between;
+  flex-wrap: wrap; */
+  grid-column-start: 1;
 }
 
-form h2 {
-  margin-bottom: 1rem;
+.calendarSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .calendarBox {
   width: 25rem;
-  height: 25rem;
-  display: flex;
-  align-self: center;
+  height: 22.5rem;
+  grid-column: 2;
 }
 
 #bookButton {
@@ -144,7 +151,7 @@ form h2 {
 }
 input,
 select {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   height: 2rem;
   font: inherit;
   text-align: center;
@@ -155,6 +162,7 @@ input[type='checkbox' i] {
   height: 1rem;
 }
 
+/* code for slide */
 * {
   box-sizing: border-box;
 }
