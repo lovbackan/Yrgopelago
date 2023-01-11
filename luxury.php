@@ -71,7 +71,7 @@ require("./hotelFunctions.php");
     <section class="formCalenderSection">
         <div class="formContainer">
             <form id="inputForm" method="post">
-                <h2>Make a reservation</h2>
+                <h2>Make a reservation for luxury room</h2>
                 <label for="transferCode">Transfer Code</label>
                 <input type="text" name="transferCode" id="transferCode" required class="form-control">
                 <label for="name">Arrival</label>
