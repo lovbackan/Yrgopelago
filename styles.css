@@ -158,9 +158,10 @@ form {
 
 .checkBoxRow {
   display: flex;
+  flex-direction: column;
   text-align: center;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 input,
