@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   padding: 0;
   margin: 0;
@@ -26,7 +29,6 @@ nav {
 
 nav h1 {
   margin-left: 1rem;
-  background: rgba(0, 0, 0, 0.8);
   border-radius: 3px;
   padding: 0.3rem 1rem;
 }
@@ -50,8 +52,6 @@ button {
   cursor: pointer;
   margin-right: 1rem;
   border-radius: 3px;
-  /* padding-left: 1rem;
-  padding-top */
   padding: 0.3rem 1rem;
 }
 
@@ -84,19 +84,8 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding-left: 1rem;
-  padding-right: 1rem; */
   border-radius: 15px;
   padding: 0.7rem 0.7rem;
-}
-
-.heroInfo button {
-  margin-top: 8.2rem;
-  align-self: center;
-  position: absolute;
-  width: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 button {
@@ -106,7 +95,7 @@ button {
   border-style: groove;
   font-family: 'interMedium';
   color: white;
-  height: 2.75rem;
+  min-height: 2.75rem;
 }
 
 /* SpaceShuttle-section */
@@ -121,6 +110,7 @@ button {
 .islandInfoHeading {
   margin-top: 2rem;
 }
+
 .islandInfo {
   height: 100vh;
   width: 50%;
@@ -163,14 +153,7 @@ form {
   height: 100vh;
   text-align: center;
   justify-content: center;
-  /* align-self: center; */
   gap: 0.5rem;
-  /* align-content: space-between;
-  flex-wrap: wrap; */
-}
-
-#bookButton {
-  margin-top: 1rem;
 }
 
 .checkBoxRow {
@@ -182,7 +165,6 @@ form {
 }
 input,
 select {
-  /* margin-top: 1rem; */
   height: 2rem;
   font: inherit;
   text-align: center;
@@ -215,10 +197,7 @@ input[type='checkbox' i] {
   background-color: black;
 }
 
-/* code for slide */
-* {
-  box-sizing: border-box;
-}
+/* code for slide (i stole this code from online since i did not have time to make my own from scratch*/
 
 .slider-wrapper {
   position: relative;
@@ -226,7 +205,6 @@ input[type='checkbox' i] {
 }
 
 .slides-container {
-  /* height: calc(100vh - 2rem); */
   height: 100vh;
   width: 100%;
   display: flex;

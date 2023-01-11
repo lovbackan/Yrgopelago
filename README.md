@@ -1,16 +1,16 @@
-WHY NOT A GIF HERE? TO SET THE MODE.
+![](https://github.com/lovbackan/Git-lesson/blob/main/see%20you%20space%20cowboy.gif)
 
-# Island name
+# Space Shuttle Island
 
-Some text about your lovely island
+Welcome to Space Shuttle Island, your first destination to reach the stars!
 
-# Hotel name
+# Groundbreaker
 
-Why not add some info about the hotel of your dreams?
+Welcome to the Groundbreaker! A hotel where every image and infotext about the hotel is generated with the help of AI's. I have used Midjourney to create every image and for the infotext in the homepage i have used ChatGPT! Please visit the site to learn more about the hotel!
 
 # Instructions
 
-If your project requires some installation or similar, please inform your user 'bout it. For instance, if you want a more decent indentation of your .php files, you could edit [.editorconfig]('/.editorconfig').
+Please view this site on desktop since i have not made it with the mobile first approach due to time limit!
 
 # Code review
 

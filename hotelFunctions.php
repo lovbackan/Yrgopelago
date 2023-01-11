@@ -219,14 +219,14 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
     //The booking response!
     $bookingResponse = [
-        "island" => "Spaceshuttle island",
+        "island" => "Space Shuttle Island",
         "hotel" => "Groundbreaker",
         "arrival_date" => $arrival,
         "departure_date" => $departure,
         "total_cost" => $totalCost,
         "stars" => "3",
         "features" => ["name" => $features, "cost" => $featuresCost],
-        "additional_info" => "Thank you for chosing Groundbreaker as your hotel of choice!"
+        "additional_info" => "Thank you for chosing the hotel among the stars!"
     ];
 
     //If everything is good to go, register the booking and echo the json bookingresponse!

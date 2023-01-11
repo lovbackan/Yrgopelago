@@ -31,10 +31,10 @@ require("./hotelFunctions.php");
     </header>
 
     <section class="hero">
-        <img class="heroDesktop" src="/pictures/2k/SimonLovbacka_budget_room_in_space_hotel_view_over_earth_stunni_01029d48-87c5-4def-b308-89366b635feb.png" />
+        <img class="heroDesktop" src="./pictures/2k/SimonLovbacka_budget_room_in_space_hotel_view_over_earth_stunni_01029d48-87c5-4def-b308-89366b635feb.png" />
         <div class="heroInfo">
             <h2>Introducing the Standard Room</h2>
-            <p>Just standard stuff</p>
+            <h3>Just standard stuff</h3>
         </div>
     </section>
 
@@ -45,26 +45,26 @@ require("./hotelFunctions.php");
         </button>
         <div class="slides-container" id="slides-container">
             <div class="slide">
-                <img src="/Pictures/2k/SimonLovbacka_budget_room_in_space_hotel_view_over_earth_stunni_01029d48-87c5-4def-b308-89366b635feb.png" />
+                <img src="./pictures/2k/SimonLovbacka_budget_room_in_space_hotel_view_over_earth_stunni_01029d48-87c5-4def-b308-89366b635feb.png" />
             </div>
 
             <div class="slide">
-                <img src="/Pictures/2k/standard-room-upscaled.jpg" />
+                <img src="./pictures/2k/standard-room-upscaled.jpg" />
             </div>
             <div class="slide">
-                <img src="/Pictures/gridPicture.png" />
+                <img src="./pictures/gridPicture.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/grid2.png" />
+                <img src="./pictures/grid2.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/grid4.png" />
+                <img src="./pictures/grid4.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/grid3.png" />
+                <img src="./pictures/grid3.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/grid8.png" />
+                <img src="./pictures/grid8.png" />
             </div>
 
         </div>
@@ -78,6 +78,7 @@ require("./hotelFunctions.php");
                 <label for="name">Arrival</label>
                 <input type="date" name="arrival" id="arrival" required class="form-control" min="2023-01-01" max="2023-01-31">
                 <label for="name">Departure</label>
+                <p>20% discount if u stay longar than one night!</p>
                 <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-01" max="2023-01-31">
                 <label for="room" class="form-control">Room</label>
                 <select required name=room id="room">
@@ -86,7 +87,7 @@ require("./hotelFunctions.php");
                     <option value="Standard">Standard</option>
                     <option value="Luxury">Luxury</option>
                 </select>
-                <label for="totalCost" class="form-control">Total Cost</label>
+                <label for="totalCost" class="form-control">Total Cost $</label>
                 <input type="text" name="totalCost" id="totalCost" readonly>
                 <div class="checkBoxRow">
                     <label for="offer1" class="form-control">Stargazing from the hotel's observatory</label>

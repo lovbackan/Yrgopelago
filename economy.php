@@ -31,10 +31,10 @@ require("./hotelFunctions.php");
     </header>
 
     <section class="hero">
-        <img class="heroDesktop" src="/pictures/2k/budget.png" />
+        <img class="heroDesktop" src="./pictures/2k/budget.png" />
         <div class="heroInfo">
             <h2>Introducing the Budget Room</h2>
-            <p>When money is a problem</p>
+            <h3>When money is a problem</h3>
         </div>
     </section>
 
@@ -45,25 +45,25 @@ require("./hotelFunctions.php");
         </button>
         <div class="slides-container" id="slides-container">
             <div class="slide">
-                <img src="/Pictures/2k/budget.png" />
+                <img src="./pictures/2k/budget.png" />
             </div>
             <div class="slide">
-                <img src="/pictures/budget-room.jpg" />
+                <img src="./pictures/budget-room.jpg" />
             </div>
             <div class="slide">
-                <img src="/Pictures/grid4.png" />
+                <img src="./pictures/grid4.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/budgetRoomGrid.png" />
+                <img src="./pictures/budgetRoomGrid.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/budgetRoomGrid2.webp" />
+                <img src="./pictures/budgetRoomGrid2.webp" />
             </div>
             <div class="slide">
-                <img src="/Pictures/budgetRoomGrid3.png" />
+                <img src="./pictures/budgetRoomGrid3.png" />
             </div>
             <div class="slide">
-                <img src="/Pictures/grid7.png" />
+                <img src="./pictures/grid7.png" />
             </div>
         </div>
     </div>
@@ -76,6 +76,7 @@ require("./hotelFunctions.php");
                 <label for="name">Arrival</label>
                 <input type="date" name="arrival" id="arrival" required class="form-control" min="2023-01-01" max="2023-01-31">
                 <label for="name">Departure</label>
+                <p>20% discount if u stay longar than one night!</p>
                 <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-01" max="2023-01-31">
                 <label for="room" class="form-control">Room</label>
                 <select required name=room id="room">
@@ -84,7 +85,7 @@ require("./hotelFunctions.php");
                     <option value="Standard">Standard</option>
                     <option value="Luxury">Luxury</option>
                 </select>
-                <label for="totalCost" class="form-control">Total Cost</label>
+                <label for="totalCost" class="form-control">Total Cost $</label>
                 <input type="text" name="totalCost" id="totalCost" readonly>
                 <div class="checkBoxRow">
                     <label for="offer1" class="form-control">Stargazing from the hotel's observatory</label>
