@@ -65,9 +65,6 @@ function priceCalculator() {
   }
 }
 
-heroButton.addEventListener('click', () => {
-  window.scrollTo(0, document.body.scrollHeight);
-});
 if (form) {
   form.addEventListener('change', () => {
     getCheckboxStatus();
@@ -83,9 +80,11 @@ const nextButton = document.getElementById('slide-arrow-next');
 nextButton.addEventListener('click', () => {
   const slideWidth = slide.clientWidth;
   slidesContainer.scrollLeft += slideWidth;
+  console.log('press');
 });
 
 prevButton.addEventListener('click', () => {
   const slideWidth = slide.clientWidth;
   slidesContainer.scrollLeft -= slideWidth;
+  console.log('press');
 });

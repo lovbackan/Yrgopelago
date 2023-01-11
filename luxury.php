@@ -19,12 +19,13 @@ require("./hotelFunctions.php");
 <body>
     <header>
         <nav>
-            <h2>Groundbreaker</h2>
+            <a href="./index.php">
+                <h1>Groundbreaker</h1>
+            </a>
             <div class="navInfo">
-                <a href="./index.php">Home</a>
                 <a href="./economy.php">Economy</a>
                 <a href="./standard.php">Standard</a>
-                <a href="./luxury.php">Luxury</a>
+                <a class="lastNavItem" href="./luxury.php">Luxury</a>
             </div>
         </nav>
     </header>
@@ -34,16 +35,13 @@ require("./hotelFunctions.php");
         <div class="heroInfo">
             <h2>Introducing the Luxury Suite</h2>
             <p>When money aint a problem</p>
-            <button class="buy">Make reservation</button>
         </div>
     </section>
     <section class="sliderSection">
         <div class="slider-wrapper">
             <button class="slide-arrow" id="slide-arrow-prev">
-                &#8249;
             </button>
             <button class="slide-arrow" id="slide-arrow-next">
-                &#8250;
             </button>
             <div class="slides-container" id="slides-container">
 
@@ -71,31 +69,33 @@ require("./hotelFunctions.php");
         </div>
     </section>
     <section class="formCalenderSection">
-        <form id="inputForm" method="post">
-            <h2>Make a reservation</h2>
-            <label for="transferCode">Transfer Code</label>
-            <input type="text" name="transferCode" id="transferCode" required class="form-control">
-            <label for="name">Arrival</label>
-            <input type="date" name="arrival" id="arrival" required class="form-control" min="2023-01-01" max="2023-01-31">
-            <label for="name">Departure</label>
-            <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-01" max="2023-01-31">
-            <label for="room" class="form-control">Room</label>
-            <select required name=room id="room">
-                <option disabled selected value=>Select a room!</option>
-                <option value="Economy">Economy</option>
-                <option value="Standard">Standard</option>
-                <option value="Luxury">Luxury</option>
-            </select>
-            <label for="totalCost" class="form-control">Total Cost</label>
-            <input type="text" name="totalCost" id="totalCost" readonly>
-            <div class="checkBoxRow">
-                <label for="offer1" class="form-control">Offer 1</label>
-                <input type="checkbox" id="offer1" name="options[]" value="1" />
-                <label for="offer2" class="form-control">Offer 2</label>
-                <input type="checkbox" id="offer2" name="options[]" value="2" />
-            </div>
-            <button type="submit" id="bookButton">Book!</button>
-        </form>
+        <div class="formContainer">
+            <form id="inputForm" method="post">
+                <h2>Make a reservation</h2>
+                <label for="transferCode">Transfer Code</label>
+                <input type="text" name="transferCode" id="transferCode" required class="form-control">
+                <label for="name">Arrival</label>
+                <input type="date" name="arrival" id="arrival" required class="form-control" min="2023-01-01" max="2023-01-31">
+                <label for="name">Departure</label>
+                <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-01" max="2023-01-31">
+                <label for="room" class="form-control">Room</label>
+                <select required name=room id="room">
+                    <option disabled selected value=>Select a room!</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Luxury">Luxury</option>
+                </select>
+                <label for="totalCost" class="form-control">Total Cost</label>
+                <input type="text" name="totalCost" id="totalCost" readonly>
+                <div class="checkBoxRow">
+                    <label for="offer1" class="form-control">Stargazing from the hotel's observatory</label>
+                    <input type="checkbox" id="offer1" name="options[]" value="1" />
+                    <label for="offer2" class="form-control">Spacewalk with instructor</label>
+                    <input type="checkbox" id="offer2" name="options[]" value="2" />
+                </div>
+                <button type="submit" id="bookButton">Book!</button>
+            </form>
+        </div>
         <div class="calendarSection">
             <div class="calendarBox">
                 <?php bookedRooms('Luxury'); ?>

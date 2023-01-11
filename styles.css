@@ -24,8 +24,22 @@ nav {
   align-items: center;
 }
 
-nav h2 {
-  padding-left: 1rem;
+nav h1 {
+  margin-left: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  padding: 0.3rem 1rem;
+}
+
+nav h1,
+.navInfo,
+.heroInfo,
+button {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+button {
+  cursor: pointer;
 }
 
 .navInfo {
@@ -34,13 +48,20 @@ nav h2 {
   right: 0;
   align-items: center;
   cursor: pointer;
-  padding-right: 1rem;
+  margin-right: 1rem;
+  border-radius: 3px;
+  /* padding-left: 1rem;
+  padding-top */
+  padding: 0.3rem 1rem;
 }
 
 a {
   text-decoration: none;
   color: white;
   padding-right: 1rem;
+}
+.lastNavItem {
+  padding-right: 0;
 }
 
 .hero {
@@ -63,16 +84,22 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* padding-left: 1rem;
+  padding-right: 1rem; */
+  border-radius: 15px;
+  padding: 0.7rem 0.7rem;
 }
 
 .heroInfo button {
-  margin-top: 6.5rem;
+  margin-top: 8.2rem;
   align-self: center;
   position: absolute;
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 button {
-  background-color: black;
   border-radius: 30px;
   border-color: white;
   border-width: 1px;
@@ -80,8 +107,6 @@ button {
   font-family: 'interMedium';
   color: white;
   height: 2.75rem;
-  /* margin-bottom: 98%; */
-  background-color: black;
 }
 
 /* SpaceShuttle-section */
@@ -93,12 +118,19 @@ button {
   display: flex;
 }
 
+.islandInfoHeading {
+  margin-top: 2rem;
+}
 .islandInfo {
+  height: 100vh;
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
 }
 
 .spaceShuttlePicture {
@@ -111,23 +143,60 @@ button {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-self: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
 }
 
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  grid-column-start: 1;
+}
+
 form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   text-align: center;
   justify-content: center;
-  padding-left: 1rem;
+  /* align-self: center; */
+  gap: 0.5rem;
   /* align-content: space-between;
   flex-wrap: wrap; */
-  grid-column-start: 1;
+}
+
+#bookButton {
+  margin-top: 1rem;
+}
+
+.checkBoxRow {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+input,
+select {
+  /* margin-top: 1rem; */
+  height: 2rem;
+  font: inherit;
+  text-align: center;
+}
+
+#arrival,
+#departure,
+#room {
+  min-height: 2rem;
+}
+
+input[type='checkbox' i] {
+  width: 1rem;
+  height: 1rem;
 }
 
 .calendarSection {
@@ -141,25 +210,9 @@ form {
   grid-column: 2;
 }
 
-#bookButton {
-  margin-top: 1rem;
-}
-
-.checkBowRow {
-  display: flex;
-  justify-content: row;
-}
-input,
-select {
-  /* margin-top: 1rem; */
-  height: 2rem;
-  font: inherit;
-  text-align: center;
-}
-
-input[type='checkbox' i] {
-  width: 1rem;
-  height: 1rem;
+.calendar > * {
+  font-family: 'interExtraLight';
+  background-color: black;
 }
 
 /* code for slide */
@@ -210,12 +263,14 @@ input[type='checkbox' i] {
   left: 0;
   padding-left: 0.25rem;
   border-radius: 0 2rem 2rem 0;
+  z-index: 99;
 }
 
 #slide-arrow-next {
   right: 0;
   padding-left: 0.75rem;
   border-radius: 2rem 0 0 2rem;
+  z-index: 99;
 }
 
 .slide {

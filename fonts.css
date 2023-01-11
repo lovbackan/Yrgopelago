@@ -26,7 +26,14 @@
 }
 
 h1 {
-  font-family: 'robotoThin';
+  font-family: 'interMedium';
+  font-size: 24px;
+}
+a {
+  font-size: 20px;
+  font-family: 'robotoLight';
+  /* font-family: 'interMedium'; */
+  /* -webkit-text-stroke: 1px black; */
 }
 p {
   font-family: 'interExtraLight';
@@ -35,11 +42,17 @@ p {
 h2 {
   font-size: 24px;
   font-family: 'interExtraLight';
+  padding: 0;
 }
 
 h3 {
   font-size: 24px;
   font-family: 'interExtraLight';
+}
+
+button {
+  font-size: 18px;
+  font-family: 'interLight';
 }
 
 h1,
@@ -50,12 +63,12 @@ p {
   margin: 0;
 }
 
-a {
+form {
   font-size: 20px;
   font-family: 'interExtraLight';
 }
 
-form {
-  font-size: 20px;
+.calendar > * {
   font-family: 'interExtraLight';
+  background-color: black;
 }

@@ -147,7 +147,7 @@ WHERE room = '$roomKind'");
         $departureDate = $value['departure'];
         $roomKind->addEvent($arrivalDate, $departureDate, '', true);
     }
-    echo $roomKind->display(date('Y-01-01'), 'pink');
+    echo $roomKind->display(date('Y-01-01'), 'grey');
     //Behövs verkligen denna die?
     die();
 };
