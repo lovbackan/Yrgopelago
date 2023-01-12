@@ -90,11 +90,11 @@ require("./hotelFunctions.php");
                 <label for="totalCost" class="form-control">Total Cost $</label>
                 <input type="text" name="totalCost" id="totalCost" readonly>
                 <div class="checkBoxRow1">
-                    <label for="offer1" class="form-control">Stargazing from the hotel's observatory</label>
+                    <label for="offer1" class="form-control">Stargazing from the hotel's observatory: 3$</label>
                     <input type="checkbox" id="offer1" name="options[]" value="1" />
                 </div>
                 <div class=checkBoxRow2>
-                    <label for="offer2" class="form-control">Spacewalk with instructor</label>
+                    <label for="offer2" class="form-control">Spacewalk with instructor: 5$</label>
                     <input type="checkbox" id="offer2" name="options[]" value="2" />
                 </div>
                 <button type="submit" id="bookButton">Book!</button>
