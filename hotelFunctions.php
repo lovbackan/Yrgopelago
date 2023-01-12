@@ -38,6 +38,7 @@ function connect(string $dbName): object
     return $db;
 }
 
+
 $db = connect("hotel.db");
 
 function guidv4(string $data = null): string
@@ -210,8 +211,9 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     };
     global $dateFree;
 
-    //Check if everything is in order and is good to go!
-    if ($dateFree === true & $arrival < $departure & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
+
+    //Check if everything is in order and is good to go! This is the first time that we also check if the departure is after the arrival, if not alert message is sent.
+    if ($dateFree === true & $departure > $arrival & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
         $goodToGo = true;
     } else {
         $goodToGo = false;

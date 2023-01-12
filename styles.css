@@ -107,20 +107,18 @@ button {
   display: flex;
 }
 
-.islandInfoHeading {
-  margin-top: 2rem;
-}
-
 .islandInfo {
   height: 100vh;
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: 1rem;
   text-align: center;
   margin-left: 2rem;
   margin-right: 2rem;
   margin-bottom: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .spaceShuttlePicture {
@@ -154,15 +152,16 @@ form {
   text-align: center;
   justify-content: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.checkBoxRow {
-  display: flex;
-  flex-direction: column;
+.checkBoxRow1 {
   text-align: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: row;
+}
+.checkBoxRow2 {
+  text-align: center;
+  flex-direction: row;
 }
 input,
 select {
@@ -186,6 +185,7 @@ input[type='checkbox' i] {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* flex-wrap: wrap; */
 }
 .calendarBox {
   width: 25rem;

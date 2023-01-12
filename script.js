@@ -11,6 +11,8 @@ let offer1Checked;
 let offer2Checked;
 let offer3Checked;
 
+price.value = 0;
+
 //See the checkbox status!
 function getCheckboxStatus() {
   const offer1 = document.querySelector('#offer1').checked;
@@ -60,6 +62,10 @@ function priceCalculator() {
   }
   if (offer2Checked === true) {
     price.value = Number(price.value) + 5;
+  }
+
+  if (price.value < -1) {
+    alert('Sadly timetravel is not a feature at this hotel, atleast for now!');
   }
 }
 

@@ -77,7 +77,7 @@ require("./hotelFunctions.php");
                 <input type="date" name="arrival" id="arrival" required class="form-control" min="2023-01-01" max="2023-01-31">
                 <label for="name">Departure</label>
                 <p>20% discount if u stay longar than one night!</p>
-                <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-01" max="2023-01-31">
+                <input type="date" name="departure" id="departure" required class="form-control" min="2023-01-02" max="2023-01-31">
                 <label for="room" class="form-control">Room</label>
                 <select required name=room id="room">
                     <option disabled selected value=>Select a room!</option>
@@ -87,9 +87,11 @@ require("./hotelFunctions.php");
                 </select>
                 <label for="totalCost" class="form-control">Total Cost $</label>
                 <input type="text" name="totalCost" id="totalCost" readonly>
-                <div class="checkBoxRow">
+                <div class="checkBoxRow1">
                     <label for="offer1" class="form-control">Stargazing from the hotel's observatory</label>
                     <input type="checkbox" id="offer1" name="options[]" value="1" />
+                </div>
+                <div class=checkBoxRow2>
                     <label for="offer2" class="form-control">Spacewalk with instructor</label>
                     <input type="checkbox" id="offer2" name="options[]" value="2" />
                 </div>

@@ -67,16 +67,16 @@ require("./hotelFunctions.php");
                     <h3>Your destination on Earth to reach the stars</h3>
                 </div>
                 <p>
-                    Have you ever wanted to experience the ultimate adventure? Imagine taking a luxurious space shuttle to the world's first space hotel located 250 miles above the Earth's surface. This is more than just a dream, it's now a reality. Welcome to the Groundbreaker Hotel!
+                    Have you ever wanted to experience the ultimate adventure? Imagine taking a luxurious space shuttle to the world's first space hotel located 250 miles above the Earth's surface. This is more than just a dream, it's now a reality. Welcome to The Groundbreaker Hotel!
                 </p>
                 <p>
-                    This incredible space hotel provides guests with the opportunity to experience the wonders of space travel up close. The space hotel is equipped with state-of-the-art technology, allowing you to explore the universe in an exciting and unique way. You can take part in space walks, view the Earth from a unique perspective, and get up close and personal with the stars. Experience weightlessness with the Groundbreakers partial artificial gravity from its rotation to maintain lunar gravity—approximately 1⁄6 of Earth's gravity.
+                    This incredible space hotel provides guests with the opportunity to experience the wonders of space travel up close. The space hotel is equipped with state-of-the-art technology, allowing you to explore the universe in an exciting and unique way. You can take part in space walks, view the Earth from a unique perspective, and get up close and personal with the stars. Experience gravity approximately 1/6 of Earth's onboard the Groundbreaker.
                 </p>
                 <p>
                     Your journey begins with a first-class flight on a space shuttle departing from Space Shuttle Island. The shuttle is equipped with the most advanced technology, ensuring a safe and comfortable journey in style.
                 </p>
                 <p>
-                    This is your chance to experience a once in a lifetime adventure. So, grab your passport and prepare to embark on an unforgettable journey to the Groundbreaker Hotel!
+                    This is your chance to experience a once in a lifetime adventure. So, grab your passport and prepare to embark on an unforgettable journey to The Groundbreaker Hotel!
                 </p>
             </div>
             <img class="spaceShuttlePicture" src="./pictures/Hero-space-shuttle.jpg" />
