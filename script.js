@@ -62,6 +62,7 @@ function priceCalculator() {
     price.value = Number(price.value) + 5;
   }
 
+  //I have this weird thing where when i call an alert in php throguh javascript it creates a new page and displays the alert. But this alert works as it should, opening an alert at the same page
   if (price.value < -1) {
     alert('Sadly timetravel is not a feature at this hotel, atleast for now!');
   }
