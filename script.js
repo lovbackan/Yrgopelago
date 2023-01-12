@@ -11,8 +11,6 @@ let offer1Checked;
 let offer2Checked;
 let offer3Checked;
 
-price.value = 0;
-
 //See the checkbox status!
 function getCheckboxStatus() {
   const offer1 = document.querySelector('#offer1').checked;
@@ -82,9 +80,11 @@ if (form) {
 nextButton.addEventListener('click', () => {
   const slideWidth = slide.clientWidth;
   slidesContainer.scrollLeft += slideWidth;
+  console.log('click');
 });
 
 prevButton.addEventListener('click', () => {
   const slideWidth = slide.clientWidth;
   slidesContainer.scrollLeft -= slideWidth;
+  console.log('click');
 });
