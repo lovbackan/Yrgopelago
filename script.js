@@ -7,6 +7,11 @@ const slidesContainer = document.getElementById('slides-container');
 const slide = document.querySelector('.slide');
 const prevButton = document.getElementById('slide-arrow-prev');
 const nextButton = document.getElementById('slide-arrow-next');
+const roomPriceEconomy = 3;
+const roomPriceStandard = 5;
+const roomPriceLuxury = 8;
+const featureOnePrice = 3;
+const featureTwoPrice = 5;
 let offer1Checked;
 let offer2Checked;
 let offer3Checked;
@@ -37,11 +42,11 @@ function priceCalculator() {
 
   let roomprice;
   if (roomOption === 'Economy') {
-    roomprice = 3;
+    roomprice = roomPriceEconomy;
   } else if (roomOption === 'Standard') {
-    roomprice = 5;
+    roomprice = roomPriceStandard;
   } else if (roomOption === 'Luxury') {
-    roomprice = 7;
+    roomprice = roomPriceLuxury;
   } else {
     roomprice = 0;
   }
@@ -56,13 +61,13 @@ function priceCalculator() {
 
   //Checks features and adds it to price
   if (offer1Checked === true) {
-    price.value = Number(price.value) + 3;
+    price.value = Number(price.value) + featureOnePrice;
   }
   if (offer2Checked === true) {
-    price.value = Number(price.value) + 5;
+    price.value = Number(price.value) + featureTwoPrice;
   }
 
-  //I have this weird thing where when i call an alert in php throguh javascript it creates a new page and displays the alert. But this alert works as it should, opening an alert at the same page
+  //I have this weird thing where when i call an alert in php throguh javascript it creates a new page and displays the alert. But this alert works as it should, opening an alert at the same page if you try to book a departure that is before an arrival-
   if (price.value < -1) {
     alert('Sadly timetravel is not a feature at this hotel, atleast for now!');
   }
