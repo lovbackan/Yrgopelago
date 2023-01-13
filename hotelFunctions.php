@@ -6,10 +6,10 @@ use GuzzleHttp\Client;
 
 require(__DIR__ . '/vendor/autoload.php');
 
+
 use benhall14\phpCalendar\Calendar as Calendar;
 
-// $errors;
-
+$db = connect("hotel.db");
 function connect(string $dbName): object
 {
     $dbPath = __DIR__ . '/' . $dbName;
@@ -25,9 +25,9 @@ function connect(string $dbName): object
                     transferCode TEXT,
                     arrival DATE,
                     departure DATE,
-                    room TEXT,
+                    room VARCHAR(8),
                     totalCost INTEGER,
-                    features TEXT
+                    features VARCHAR(9)
                 )");
     } catch (PDOException $e) {
         echo '<script>alert("Failed to connect to database")</script>';
@@ -37,8 +37,6 @@ function connect(string $dbName): object
     return $db;
 }
 
-
-$db = connect("hotel.db");
 
 function guidv4(string $data = null): string
 {
@@ -130,7 +128,7 @@ function depositToAccount($transferCode): string | bool
 };
 
 //Function that checks the database for the specific room and creates a calender where the booked dates are red!
-function bookedRooms($roomKind): void
+function bookedRoomsCalendar($roomKind): void
 {
     global $db;
     $statement = $db->prepare("SELECT arrival, departure
@@ -148,6 +146,5 @@ WHERE room = '$roomKind'");
         $roomKind->addEvent($arrivalDate, $departureDate, '', true);
     }
     echo $roomKind->display(date('Y-01-01'), 'grey');
-    //Behövs verkligen denna die?
     die();
 };

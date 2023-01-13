@@ -1,6 +1,5 @@
 <?php
-require("./hotelFunctions.php");
-
+// require("hotelFunctions.php");
 //This code does most of the work, on submit, check if transfercode is valid, checks if the posted date is free, checks if
 if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
     $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
@@ -8,6 +7,8 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
     $departure = $_POST["departure"];
     $room = $_POST["room"];
     $totalCost = $_POST["totalCost"];
+
+    $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
 
     // this step is neccessary because otherwise it will show an error that features does not exist!
     if (!empty($_POST["options"])) {
@@ -19,13 +20,13 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
 
     switch ($features) {
-        case '1':
+        case 'Stargazing':
             $featuresCost = 3;
             break;
-        case '2':
+        case 'Spacewalk':
             $featuresCost = 5;
             break;
-        case '1,2':
+        case 'Stargazing,Spacewalk':
             $featuresCost = 8;
             break;
         case 'none':
@@ -35,8 +36,8 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
             break;
     }
 
-    $transferCodeCheck = checkTransferCode($transferCode, $totalCost);
-    // The following code grabs all the arrival and departures for the specific room from the database
+    // The following code grabs all the arrival and departures for the specific room from the database. I would like to have this as a function instead but had some problems getting it to work so sadly the code has to be here at the moment!
+
     $statement = $db->prepare("SELECT arrival, departure
                   FROM bookings
                   WHERE room = '$room'");
@@ -62,13 +63,10 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
             }
         }
     } else {
-        //If databank is empty all the dates are free to book!
         $dateFree = true;
     };
-    global $dateFree;
 
-
-    //Check if everything is in order and is good to go! This is the first time that we also check if the departure is after the arrival, if not alert message is sent.
+    // Check if everything is in order and is good to go! This is the first time that we also check if the departure is after the arrival, if not alert message is sent.
     if ($dateFree === true & $departure > $arrival & is_bool($transferCodeCheck) & $transferCodeCheck === true) {
         $goodToGo = true;
     } else {

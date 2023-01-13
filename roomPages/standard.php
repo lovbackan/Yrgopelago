@@ -1,6 +1,7 @@
 <?php
 require("../hotelFunctions.php");
-require_once("./headAndHeader.php");
+require("../booking.php");
+require_once("headAndHeader.php");
 ?>
 <section class="hero">
     <img class="heroDesktop" src="../pictures/2k/SimonLovbacka_budget_room_in_space_hotel_view_over_earth_stunni_01029d48-87c5-4def-b308-89366b635feb.png" />
@@ -63,18 +64,18 @@ require_once("./headAndHeader.php");
             <input type="text" name="totalCost" id="totalCost" readonly>
             <div class="checkBoxRow1">
                 <label for="offer1" class="form-control">Stargazing from the hotel's observatory: 3$</label>
-                <input type="checkbox" id="offer1" name="options[]" value="1" />
+                <input type="checkbox" id="offer1" name="options[]" value="Stargazing" />
             </div>
             <div class=checkBoxRow2>
                 <label for="offer2" class="form-control">Spacewalk with instructor: 5$</label>
-                <input type="checkbox" id="offer2" name="options[]" value="2" />
+                <input type="checkbox" id="offer2" name="options[]" value="Spacewalk" />
             </div>
             <button type="submit" id="bookButton">Book!</button>
         </form>
     </div>
     <div class="calendarSection">
         <div class="calendarBox">
-            <?php bookedRooms('Standard'); ?>
+            <?php bookedRoomsCalendar('Standard'); ?>
         </div>
     </div>
 </section>
