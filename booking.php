@@ -1,6 +1,5 @@
 <?php
-// require("hotelFunctions.php");
-//This code does most of the work, on submit, check if transfercode is valid, checks if the posted date is free, checks if
+//This code does most of the work, on submit, check if transfercode is valid, checks if the posted date is free, checks if everything is goodTogo and then insert the booking into database and transfer money
 if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST["room"], $_POST["totalCost"])) {
     $transferCode = htmlspecialchars($_POST["transferCode"], ENT_QUOTES);
     $arrival = $_POST["arrival"];
@@ -63,6 +62,8 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
             }
         }
     } else {
+
+        //If there are no dates booked in the calender the following code makes sure that u can book!
         $dateFree = true;
     };
 
@@ -87,14 +88,14 @@ if (isset($_POST["transferCode"], $_POST["arrival"], $_POST["departure"], $_POST
 
     //If everything is good to go, register the booking and echo the json bookingresponse!
     if (!empty($_POST["options"]) && $goodToGo === true) {
-        $deposit = depositToAccount($transferCode);
+        depositToAccount($transferCode);
         $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost,features) VALUES (?,?,?,?,?,?)');
         $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost, $features]);
         header('Content-Type: application/json');
         echo json_encode($bookingResponse);
         die();
     } else if ($goodToGo === true) {
-        $deposit = depositToAccount($transferCode);
+        depositToAccount($transferCode);
         $stmt = $db->prepare('INSERT INTO bookings(transferCode,arrival,departure,room,totalCost) VALUES (?,?,?,?,?)');
         $stmt->execute([$transferCode, $arrival, $departure, $room, $totalCost]);
         header('Content-Type: application/json');

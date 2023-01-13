@@ -123,7 +123,7 @@ function depositToAccount($transferCode): string | bool
         $result = json_decode($result, true);
         return true;
     } catch (\Exception $e) {
-        echo '<script>alert("Something went wrong with the deposit!")</script>';
+        echo '<script>alert("Something went wrong with the money transfer!")</script>';
     }
 };
 
