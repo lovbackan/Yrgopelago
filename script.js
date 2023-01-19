@@ -86,49 +86,21 @@ if (form) {
 
 
 
-// planets.forEach(planet => {
-//   // console.log(planet);
-//   const t = planet.animate([
-//     {
-//       transform: "rotate(0deg) translate(var(--translate, 160px)) rotate(0deg)",
-//       offset: 0
-//     },
-//     {
-//       transform: "rotate(-360deg) translate(var(--translate, 160px)) rotate(360deg)",
-//       offset: 1
-//     }
-//   ],
-//   {
-//     easing: "linear",
-//     duration: 10000,
-//     // delay: randomIntFromInterval(0, 1000),
-//     iterations: 3,
-//   }
-//   )
-//   setInterval(() => {
-//     t.progress = 30;
-//     t.iterations = 1
+planets.forEach(planet => {
+  let path = anime.path(planet.nextElementSibling);
+  let solarSystem = anime({
+      targets: planet,
+      translateX: path('x'),
+      translateY: path('y'),
+      rotate: path('angle'),
+      easing: 'linear',
+      duration: 8000,
+      delay: Math.random() * 1000,
+      loop: true
+  })
+  solarSystem.play();
 
-//     let progress = Math.floor((t.timeline.currentTime / t.iterations) - t.startTime) / 100;
-//     progress = progress.toPrecision(1).replace('e+2', '');
-//     if (progress > 9) {
-//       t.iterations = t.iterations + 1
-//     }
-//     console.log(progress);
-//     console.log(t.iterations);
-//   }, 10000);
-
-//   planet.addEventListener('click', e => {
-//       t.progress = 30;
-//       t.iterations = 1
-
-//       let progress = Math.floor(t.timeline.currentTime - t.startTime) / 100;
-//       progress = progress.toPrecision(1).replace('e+1', '');
-//       progress > 9
-//       console.log(progress);
-//     })
-
-//   })
+});
 
   function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
