@@ -1,0 +1,11 @@
+<svg width="746" height="746" viewBox="0 0 746 746" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="374.595" cy="374.595" r="78.9983" fill="#FDE617"/>
+  <ellipse class="planet" cx="374.326" cy="373.578" rx="163.065" ry="163.472" stroke="white" stroke-dasharray="6 6"/>
+  <ellipse cx="374.95" cy="374" rx="19.9502" ry="20" fill="#FFBE5E"/>
+  <ellipse class="planet" cx="373.105" cy="373.366" rx="233.105" ry="233.366" stroke="white" stroke-dasharray="6 6"/>
+  <ellipse cx="374.978" cy="373" rx="19.9776" ry="20" fill="#FD9E10"/>
+  <circle cx="373.578" cy="373.578" r="302.106" stroke="white" stroke-dasharray="6 6"/>
+  <circle class="planet" cx="375" cy="374" r="20" fill="#17FDB8"/>
+  <ellipse cx="372.893" cy="373" rx="371.893" ry="372" stroke="white" stroke-dasharray="6 6"/>
+  <circle class="planet" cx="375" cy="373" r="20" fill="#FD1717"/>
+</svg>

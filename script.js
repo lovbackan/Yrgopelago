@@ -1,3 +1,5 @@
+const planets = document.querySelectorAll(".planet");
+
 const form = document.querySelector('#inputForm');
 const selectedRoom = document.querySelector('#room');
 const price = document.querySelector('#totalCost');
@@ -82,15 +84,65 @@ if (form) {
   });
 }
 
-//the follow section is for the slider
-nextButton.addEventListener('click', () => {
-  const slideWidth = slide.clientWidth;
-  slidesContainer.scrollLeft += slideWidth;
-  console.log('click');
-});
 
-prevButton.addEventListener('click', () => {
-  const slideWidth = slide.clientWidth;
-  slidesContainer.scrollLeft -= slideWidth;
-  console.log('click');
-});
+
+// planets.forEach(planet => {
+//   // console.log(planet);
+//   const t = planet.animate([
+//     {
+//       transform: "rotate(0deg) translate(var(--translate, 160px)) rotate(0deg)",
+//       offset: 0
+//     },
+//     {
+//       transform: "rotate(-360deg) translate(var(--translate, 160px)) rotate(360deg)",
+//       offset: 1
+//     }
+//   ],
+//   {
+//     easing: "linear",
+//     duration: 10000,
+//     // delay: randomIntFromInterval(0, 1000),
+//     iterations: 3,
+//   }
+//   )
+//   setInterval(() => {
+//     t.progress = 30;
+//     t.iterations = 1
+
+//     let progress = Math.floor((t.timeline.currentTime / t.iterations) - t.startTime) / 100;
+//     progress = progress.toPrecision(1).replace('e+2', '');
+//     if (progress > 9) {
+//       t.iterations = t.iterations + 1
+//     }
+//     console.log(progress);
+//     console.log(t.iterations);
+//   }, 10000);
+
+//   planet.addEventListener('click', e => {
+//       t.progress = 30;
+//       t.iterations = 1
+
+//       let progress = Math.floor(t.timeline.currentTime - t.startTime) / 100;
+//       progress = progress.toPrecision(1).replace('e+1', '');
+//       progress > 9
+//       console.log(progress);
+//     })
+
+//   })
+
+  function randomIntFromInterval(min, max) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  //the follow section is for the slider
+  nextButton.addEventListener('click', () => {
+    const slideWidth = slide.clientWidth;
+    slidesContainer.scrollLeft += slideWidth;
+    console.log('click');
+  });
+
+  prevButton.addEventListener('click', () => {
+    const slideWidth = slide.clientWidth;
+    slidesContainer.scrollLeft -= slideWidth;
+    console.log('click');
+  });
