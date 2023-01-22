@@ -10,7 +10,12 @@ body {
 }
 
 header {
-  height: 3.75rem;
+  /* Remove height because it did´t work with sign in form
+     and replce with a margin-top.
+  */
+  /* Remove align-items because it did´t work with sign in form
+  */
+  /* height: 3.75rem; */
   width: 100%;
   position: absolute;
   position: fixed;
@@ -19,12 +24,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
   z-index: 100;
 }
 
 nav {
+  /* Remove align-items because it did´t work with sign in form */
+
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 nav h1 {
@@ -145,10 +153,11 @@ button {
 }
 
 form {
+  /* Remove height because it did´t work with sign in form */
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 100vh;
+  /* height: 100vh; */
   text-align: center;
   justify-content: center;
   gap: 0.5rem;
