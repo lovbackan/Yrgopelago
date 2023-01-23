@@ -28,6 +28,10 @@ header {
   z-index: 100;
 }
 
+header form {
+  max-width: fit-content;
+}
+
 nav {
   /* Remove align-items because it did´t work with sign in form */
 
@@ -35,13 +39,15 @@ nav {
   /* align-items: center; */
 }
 
-nav h1 {
+/* changed nav to heder */
+header h1 {
   margin-left: 1rem;
   border-radius: 3px;
   padding: 0.3rem 1rem;
 }
 
-nav h1,
+/* changed nav to heder */
+header h1,
 .navInfo,
 .heroInfo,
 button {
@@ -299,4 +305,7 @@ input[type='checkbox' i] {
   overflow: visible;
 }
 
-
+.hotel-manager-main svg .planet.returnToStart {
+  transform: rotate(360deg) translateX(var(--transform, 160)) rotate(-360deg) !important;
+  transition: transform 3s;
+}

@@ -109,10 +109,15 @@ for (let i = 0; i < planets.length; i++) {
 
 /* Click event to make the planets stop in the end poison */
 planet.addEventListener('click', e => {
-      const intervalId = e.target.dataset.id
+      const planetIndex = Array.prototype.indexOf.call(planets, e.target)
 
-      clearInterval(intervalId);
-      e.target.classList.toggle('returnToStart')
+      for (let i = 0; i <= planetIndex; i++) {
+        const planet = planets[i];
+
+        const intervalId = planet.dataset.id
+        clearInterval(intervalId);
+        planet.classList.add('returnToStart')
+      }
   })
 }
 
