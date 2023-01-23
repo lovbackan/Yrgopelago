@@ -98,8 +98,7 @@ planets.forEach(planet => {
       delay: Math.random() * 1000,
       loop: true
   })
-  solarSystem.play();
-
+  // solarSystem.finished.then(console.log('end'));
 });
 
   function randomIntFromInterval(min, max) { // min and max included

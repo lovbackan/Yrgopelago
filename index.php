@@ -1,7 +1,6 @@
 <?php
     require("./hotelFunctions.php");
     require('roomPages/headAndHeader.php');
-    session_start();
 ?>
     <main>
         <section class="hero">

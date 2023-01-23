@@ -2,7 +2,6 @@
 require("./hotelFunctions.php");
 require('./roomPages/headAndHeader.php');
 
-session_start();
 
 if (!isset($_SESSION['name'])) {
     redirect('index.php');
@@ -33,7 +32,6 @@ if (!isset($_SESSION['name'])) {
             <path id="path4" d="M3.5779999999999745,373.578a370,370 0 1,0 740,0a370,370 0 1,0 -740,0" stroke="white" stroke-dasharray="6 6"/>
         </svg>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script defer src="./script.js"></script>
 </body>
 
