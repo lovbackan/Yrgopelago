@@ -16,20 +16,17 @@ if (!isset($_SESSION['name'])) {
             </p>
         </section>
 
-        <svg viewBox="0 0 765 746" fill="none">
+        
+        <svg viewBox="0 0 746 746" fill="none">
             <circle cx="374.595" cy="374.595" r="78.9983" fill="#FDE617"/>
-
-            <ellipse class="planet" cx="0" cy="0" rx="19.9502" ry="20" fill="#FFBE5E"/>
-            <path id="path1" d="M209.32600000000002,373.578a165,165 0 1,0 330,0a165,165 0 1,0 -330,0" stroke="white" stroke-dasharray="6 6"/>
-
-            <ellipse class="planet" cx="0" cy="0" rx="19.9776" ry="20" fill="#FD9E10"/>
-            <path id="path2" d="M138.894,374.155a235,235 0 1,0 470,0a235,235 0 1,0 -470,0" stroke="white" stroke-dasharray="6 6"/>
-
-            <circle class="planet" cx="0" cy="0" r="20" fill="#17FDB8"/>
-            <path id="path3" d="M71.47199999999998,373.578a302.106,302.106 0 1,0 604.212,0a302.106,302.106 0 1,0 -604.212,0" stroke="white" stroke-dasharray="6 6"/>
-
-            <circle class="planet" cx="0" cy="0" r="20" fill="#FD1717"/>
-            <path id="path4" d="M3.5779999999999745,373.578a370,370 0 1,0 740,0a370,370 0 1,0 -740,0" stroke="white" stroke-dasharray="6 6"/>
+            <ellipse cx="374.326" cy="373.578" rx="163.065" ry="163.472" stroke="white" stroke-dasharray="6 6"/>
+            <ellipse class="planet" cx="374.95" cy="374" rx="19.9502" ry="20" fill="#FFBE5E"/>
+            <ellipse cx="373.105" cy="373.366" rx="233.105" ry="233.366" stroke="white" stroke-dasharray="6 6"/>
+            <ellipse class="planet" cx="374.978" cy="373" rx="19.9776" ry="20" fill="#FD9E10"/>
+            <circle cx="373.578" cy="373.578" r="302.106" stroke="white" stroke-dasharray="6 6"/>
+            <circle class="planet" cx="375" cy="374" r="20" fill="#17FDB8"/>
+            <ellipse cx="372.893" cy="373" rx="371.893" ry="372" stroke="white" stroke-dasharray="6 6"/>
+            <circle class="planet" cx="375" cy="373" r="20" fill="#FD1717"/>
         </svg>
     </main>
     <script defer src="./script.js"></script>

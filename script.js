@@ -84,36 +84,51 @@ if (form) {
   });
 }
 
+/* function to rotate planets on hotel-manager.php */
+function rotate(el, radius = 160, time = 4000) {
+	let rotate = 0
+
+	return setInterval( () => {
+        rotate++
+	    if (rotate == 360) {
+            rotate = 0
+	    }
+	    el.style.transform = `rotate(${rotate}deg) translateX(${radius}px) rotate(-${rotate}deg)`
+    }, time / 100);
+}
+
+/* Loop for add the animation to the planets on hotel-manager.php */
+for (let i = 0; i < planets.length; i++) {
+  const planet = planets[i];
+  const transformX = 160 + 70 * i
+  const itervalId = rotate(planet, transformX, randomIntFromInterval(9000, 1200))
+
+  planet.dataset.id = itervalId;
+  planet.style.setProperty('--transform', `${transformX}px`);
 
 
-planets.forEach(planet => {
-  let path = anime.path(planet.nextElementSibling);
-  let solarSystem = anime({
-      targets: planet,
-      translateX: path('x'),
-      translateY: path('y'),
-      rotate: path('angle'),
-      easing: 'linear',
-      duration: 8000,
-      delay: Math.random() * 1000,
-      loop: true
+/* Click event to make the planets stop in the end poison */
+planet.addEventListener('click', e => {
+      const intervalId = e.target.dataset.id
+
+      clearInterval(intervalId);
+      e.target.classList.toggle('returnToStart')
   })
-  // solarSystem.finished.then(console.log('end'));
+}
+
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+//the follow section is for the slider
+nextButton.addEventListener('click', () => {
+  const slideWidth = slide.clientWidth;
+  slidesContainer.scrollLeft += slideWidth;
+  console.log('click');
 });
 
-  function randomIntFromInterval(min, max) { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  //the follow section is for the slider
-  nextButton.addEventListener('click', () => {
-    const slideWidth = slide.clientWidth;
-    slidesContainer.scrollLeft += slideWidth;
-    console.log('click');
-  });
-
-  prevButton.addEventListener('click', () => {
-    const slideWidth = slide.clientWidth;
-    slidesContainer.scrollLeft -= slideWidth;
-    console.log('click');
-  });
+prevButton.addEventListener('click', () => {
+  const slideWidth = slide.clientWidth;
+  slidesContainer.scrollLeft -= slideWidth;
+  console.log('click');
+});
