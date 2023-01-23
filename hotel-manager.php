@@ -7,7 +7,7 @@ if (!isset($_SESSION['name'])) {
     redirect('index.php');
 }
 ?>
-    <main class="hero">
+    <main class="hotel-manager-main">
         <section>
             <h2>The Groundbreaker Hotel Lets You Choose Your Own Level of Luxury</h2>
             <p>At the Groundbreaker hotel, the stars are in your hands! Want to live like
@@ -16,7 +16,7 @@ if (!isset($_SESSION['name'])) {
             </p>
         </section>
 
-        
+
         <svg viewBox="0 0 746 746" fill="none">
             <circle cx="374.595" cy="374.595" r="78.9983" fill="#FDE617"/>
             <ellipse cx="374.326" cy="373.578" rx="163.065" ry="163.472" stroke="white" stroke-dasharray="6 6"/>

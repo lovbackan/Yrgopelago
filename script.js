@@ -101,7 +101,7 @@ function rotate(el, radius = 160, time = 4000) {
 for (let i = 0; i < planets.length; i++) {
   const planet = planets[i];
   const transformX = 160 + 70 * i
-  const itervalId = rotate(planet, transformX, randomIntFromInterval(9000, 1200))
+  const itervalId = rotate(planet, transformX, randomIntFromMinMax(9000, 1200))
 
   planet.dataset.id = itervalId;
   planet.style.setProperty('--transform', `${transformX}px`);
@@ -116,7 +116,8 @@ planet.addEventListener('click', e => {
   })
 }
 
-function randomIntFromInterval(min, max) {
+/* Helper function to get a random number between an min and max value */
+function randomIntFromMinMax(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 

@@ -279,23 +279,24 @@ input[type='checkbox' i] {
 
 
 /* hotel manager page */
-svg {
+.hotel-manager-main {
+  display: flex;
+  width: fit-content;
+  gap: 3rem;
+  min-height: 100vh;
+  align-items: center;
+  margin-inline: auto;
+}
+.hotel-manager-main p {
+  max-width: 75ch;
+}
+.hotel-manager-main h2 {
+  max-width: 513px;
+  margin-bottom: 1em;
+}
+.hotel-manager-main svg {
   width: 500px;
   overflow: visible;
 }
 
-.planet {
-  /* display: none; */
-  /* animation: orbit 10s infinite linear; */
-  animation-duration: 10s;
-  transform: rotate(0deg) translate(var(--translate, 160px)) rotate(0deg);
-}
 
-@keyframes orbit {
-  0% {
-    transform: rotate(0deg) translate(var(--translate, 160px)) rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg) translate(var(--translate, 160px)) rotate(360deg);
-  }
-}
