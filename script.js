@@ -1,4 +1,5 @@
 const planets = document.querySelectorAll(".planet");
+const sun = document.querySelector('.sun')
 
 const form = document.querySelector('#inputForm');
 const selectedRoom = document.querySelector('#room');
@@ -107,9 +108,15 @@ for (let i = 0; i < planets.length; i++) {
   planet.style.setProperty('--transform', `${transformX}px`);
 
 
-/* Click event to make the planets stop in the end poison */
+/*
+   Click event to make the planets stop in the end poison
+   add update star rating in heder
+*/
 planet.addEventListener('click', e => {
       const planetIndex = Array.prototype.indexOf.call(planets, e.target)
+
+      const form = new FormData;
+      form.append('star', planetIndex + 2);
 
       for (let i = 0; i <= planetIndex; i++) {
         const planet = planets[i];
@@ -118,9 +125,32 @@ planet.addEventListener('click', e => {
         clearInterval(intervalId);
         planet.classList.add('returnToStart')
       }
-      console.log(planetIndex + 2);
+
+      fetch('/handelStars.php', {
+        method: "POST",
+        body: form
+      })
+      .then(() => {
+        setTimeout( () => {
+          location.reload()
+        }, 3000);
+      });
   })
 }
+
+/* Event to add one star */
+sun.addEventListener('click', () => {
+  const form = new FormData;
+  form.append('star', 1);
+
+  fetch('/handelStars.php', {
+    method: "POST",
+    body: form
+  })
+  .then(() => {
+    location.reload();
+  });
+})
 
 /* Helper function to get a random number between an min and max value */
 function randomIntFromMinMax(min, max) {

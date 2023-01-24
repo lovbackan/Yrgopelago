@@ -18,7 +18,7 @@ if (!isset($_SESSION['name'])) {
 
 
         <svg viewBox="0 0 746 746" fill="none">
-            <circle cx="374.595" cy="374.595" r="78.9983" fill="#FDE617"/>
+            <circle class="sun" cx="374.595" cy="374.595" r="78.9983" fill="#FDE617"/>
             <ellipse cx="374.326" cy="373.578" rx="163.065" ry="163.472" stroke="white" stroke-dasharray="6 6"/>
             <ellipse class="planet" cx="374.95" cy="374" rx="19.9502" ry="20" fill="#FFBE5E"/>
             <ellipse cx="373.105" cy="373.366" rx="233.105" ry="233.366" stroke="white" stroke-dasharray="6 6"/>
