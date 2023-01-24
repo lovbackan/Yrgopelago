@@ -118,6 +118,7 @@ planet.addEventListener('click', e => {
         clearInterval(intervalId);
         planet.classList.add('returnToStart')
       }
+      console.log(planetIndex + 2);
   })
 }
 

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $star = 3;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,11 +41,13 @@
         <?php endif ?>
 
         <section>
+            <?php for ($i = 0; $i < 5; $i++): ?>
+            <?php if ($i < $star): ?>
             <i class="fa-2xl fa-solid fa-star"></i>
-            <i class="fa-2xl fa-solid fa-star"></i>
-            <i class="fa-2xl fa-solid fa-star"></i>
+            <?php else: ?>
             <i class="fa-2xl fa-regular fa-star"></i>
-            <i class="fa-2xl fa-regular fa-star"></i>
+            <?php endif ?>
+            <?php endfor ?>
         </section>
 
         <nav>
