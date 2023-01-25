@@ -1,13 +1,13 @@
 <?php
     declare(strict_types=1);
-    require_once('./hotelFunctions.php');
+    // require_once('./hotelFunctions.php');
 
     $reqMethod = $_SERVER["REQUEST_METHOD"];
 
 
 
     if ($reqMethod == "POST") {
-        $star = (int) $_POST['star'];
+        $star = (int) $_POST['star'] ?? 0;
 
         /* check it is a int */
         if (!is_int($star)) {

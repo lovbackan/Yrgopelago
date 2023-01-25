@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once('./hotelFunctions.php');
-    require('./handelStars.php');
+    require_once('../hotelFunctions.php');
+    require('../handelStars.php');
 
     // die(var_dump(getStar($db)['star']));
     $star = getStar($db)['star'];
@@ -57,13 +57,13 @@
         <nav>
             <div class="navInfo">
                 <?php if (isset($_SESSION['name'])): ?>
-                <a href="./hotel-manager.php">Admin</a>
+                <a href="<?= dirname(__DIR__, 1)  . "/hotel-manager.php" ?>">Admin</a>
                 <a href="./handle-sign-out.php">Sign out</a>
                 <?php endif ?>
 
-                <a href="./roomPages/economy.php">Economy</a>
-                <a href="./roomPages/standard.php">Standard</a>
-                <a class="lastNavItem" href="./roomPages/luxury.php">Luxury</a>
+                <a href="./economy.php">Economy</a>
+                <a href="./standard.php">Standard</a>
+                <a class="lastNavItem" href="./luxury.php">Luxury</a>
             </div>
 
         </nav>
