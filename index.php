@@ -3,7 +3,6 @@
     require_once('./hotelFunctions.php');
     require('./handelStars.php');
 
-    // die(var_dump(getStar($db)['star']));
     $star = getStar($db)['star'];
 ?>
 <!DOCTYPE html>

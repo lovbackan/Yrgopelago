@@ -1,9 +1,8 @@
 <?php
     session_start();
-    require_once('../hotelFunctions.php');
+    require_once(dirname(__DIR__) . "/hotelFunctions.php");
     require('../handelStars.php');
 
-    // die(var_dump(getStar($db)['star']));
     $star = getStar($db)['star'];
 ?>
 <!DOCTYPE html>
@@ -57,8 +56,8 @@
         <nav>
             <div class="navInfo">
                 <?php if (isset($_SESSION['name'])): ?>
-                <a href="<?= dirname(__DIR__, 1)  . "/hotel-manager.php" ?>">Admin</a>
-                <a href="./handle-sign-out.php">Sign out</a>
+                <a href="../hotel-manager.php">Admin</a>
+                <a href="../handle-sign-out.php">Sign out</a>
                 <?php endif ?>
 
                 <a href="./economy.php">Economy</a>

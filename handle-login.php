@@ -20,7 +20,6 @@
 
         $user = $user->fetch();
 
-        // die(var_dump($user));
 
         $error = [];
 

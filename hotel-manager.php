@@ -1,18 +1,15 @@
 <?php
-// require("./hotelFunctions.php");
-// session_start();
+require("./hotelFunctions.php");
+session_start();
 
-die(var_dump($_SESSION["name"]));
 
-// if (!isset($_SESSION['name'])) {
-//     redirect('index.php');
-// }
-?>
-<?php
-    // require('./handelStars.php');
+if (!isset($_SESSION['name'])) {
+    redirect('index.php');
+}
+require('./handelStars.php');
 
-    // die(var_dump(getStar($db)['star']));
-    $star = getStar($db)['star'] ?? 0;
+// die(var_dump(getStar($db)["star"]));
+$star = getStar($db)['star'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +96,6 @@ die(var_dump($_SESSION["name"]));
             <circle class="planet" cx="375" cy="373" r="20" fill="#FD1717"/>
         </svg>
     </main>
-    <script defer src="./script.js"></script>
 </body>
 
 </html>
