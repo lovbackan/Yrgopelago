@@ -1,3 +1,6 @@
+const planets = document.querySelectorAll(".planet");
+const sun = document.querySelector('.sun')
+
 const form = document.querySelector('#inputForm');
 const selectedRoom = document.querySelector('#room');
 const price = document.querySelector('#totalCost');
@@ -80,6 +83,78 @@ if (form) {
     priceCalculator();
     price.value = Math.round(price.value);
   });
+}
+
+/* function to rotate planets on hotel-manager.php */
+function rotate(el, radius = 160, time = 4000) {
+	let rotate = 0
+
+	return setInterval( () => {
+        rotate++
+	    if (rotate == 360) {
+            rotate = 0
+	    }
+	    el.style.transform = `rotate(${rotate}deg) translateX(${radius}px) rotate(-${rotate}deg)`
+    }, time / 100);
+}
+
+/* Loop for add the animation to the planets on hotel-manager.php */
+for (let i = 0; i < planets.length; i++) {
+  const planet = planets[i];
+  const transformX = 160 + 70 * i
+  const itervalId = rotate(planet, transformX, randomIntFromMinMax(9000, 1200))
+
+  planet.dataset.id = itervalId;
+  planet.style.setProperty('--transform', `${transformX}px`);
+
+
+/*
+   Click event to make the planets stop in the end poison
+   add update star rating in heder
+*/
+planet.addEventListener('click', e => {
+      const planetIndex = Array.prototype.indexOf.call(planets, e.target)
+
+      const form = new FormData;
+      form.append('star', planetIndex + 2);
+
+      for (let i = 0; i <= planetIndex; i++) {
+        const planet = planets[i];
+
+        const intervalId = planet.dataset.id
+        clearInterval(intervalId);
+        planet.classList.add('returnToStart')
+      }
+
+      fetch('/handelStars.php', {
+        method: "POST",
+        body: form
+      })
+      .then(() => {
+        setTimeout( () => {
+          location.reload()
+        }, 3000);
+      });
+  })
+}
+
+/* Event to add one star */
+sun.addEventListener('click', () => {
+  const form = new FormData;
+  form.append('star', 1);
+
+  fetch('/handelStars.php', {
+    method: "POST",
+    body: form
+  })
+  .then(() => {
+    location.reload();
+  });
+})
+
+/* Helper function to get a random number between an min and max value */
+function randomIntFromMinMax(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 //the follow section is for the slider

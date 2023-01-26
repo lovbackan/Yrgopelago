@@ -10,7 +10,12 @@ body {
 }
 
 header {
-  height: 3.75rem;
+  /* Remove height because it did´t work with sign in form
+     and replce with a margin-top.
+  */
+  /* Remove align-items because it did´t work with sign in form
+  */
+  /* height: 3.75rem; */
   width: 100%;
   position: absolute;
   position: fixed;
@@ -19,21 +24,30 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
   z-index: 100;
 }
 
-nav {
-  display: flex;
-  align-items: center;
+header form {
+  max-width: fit-content;
 }
 
-nav h1 {
+nav {
+  /* Remove align-items because it did´t work with sign in form */
+
+  display: flex;
+  /* align-items: center; */
+}
+
+/* changed nav to heder */
+header h1 {
   margin-left: 1rem;
   border-radius: 3px;
   padding: 0.3rem 1rem;
 }
 
-nav h1,
+/* changed nav to heder */
+header h1,
 .navInfo,
 .heroInfo,
 button {
@@ -145,10 +159,11 @@ button {
 }
 
 form {
+  /* Remove height because it did´t work with sign in form */
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 100vh;
+  /* height: 100vh; */
   text-align: center;
   justify-content: center;
   gap: 0.5rem;
@@ -266,4 +281,31 @@ input[type='checkbox' i] {
 .slides-container::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+
+/* hotel manager page */
+.hotel-manager-main {
+  display: flex;
+  width: fit-content;
+  gap: 3rem;
+  min-height: 100vh;
+  align-items: center;
+  margin-inline: auto;
+}
+.hotel-manager-main p {
+  max-width: 75ch;
+}
+.hotel-manager-main h2 {
+  max-width: 513px;
+  margin-bottom: 1em;
+}
+.hotel-manager-main svg {
+  width: 500px;
+  overflow: visible;
+}
+
+.hotel-manager-main svg .planet.returnToStart {
+  transform: rotate(360deg) translateX(var(--transform, 160)) rotate(-360deg) !important;
+  transition: transform 3s;
 }

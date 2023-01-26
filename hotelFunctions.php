@@ -107,7 +107,6 @@ function checkTransferCode($transferCode, $totalCost): string | bool
 }
 
 //Function that deposit the money to my bank account
-
 function depositToAccount($transferCode): string | bool
 {
     $client = new GuzzleHttp\Client();
@@ -148,3 +147,17 @@ WHERE room = '$roomKind'");
     echo $roomKind->display(date('Y-01-01'), 'grey');
     die();
 };
+
+// Helper function to redirect user to a specifik path
+function redirect(string $path, array $query = []): void {
+    $query = http_build_query($query);
+
+
+    $query ? header("Location: /$path?$query")
+           : header("Location: /$path");
+
+    // 308 Permanent Redirect
+    http_response_code(308);
+
+    die();
+}
