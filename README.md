@@ -2,7 +2,7 @@
 
 # Assignment
 
-Create a fictious hotel where you can book rooms and collect money from hotelvisitors through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se.
+Create a fictious hotel where you can book rooms and collect money from hotel guests through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se.
 
 # Stack
 
