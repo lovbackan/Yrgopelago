@@ -1,5 +1,13 @@
 ![](https://github.com/lovbackan/Git-lesson/blob/main/see%20you%20space%20cowboy.gif)
 
+# Assignment
+
+Create a fictious hotel where you can book rooms and collect money from hotelvisitors through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se.
+
+# Stack
+
+Php, HTML, CSS, Javascript, SQL
+
 # Space Shuttle Island
 
 Welcome to Space Shuttle Island, your first destination to reach the stars!
@@ -12,15 +20,6 @@ Welcome to the Groundbreaker! A hotel where every image and infotext about the h
 
 Please view this site on desktop since i have not made it with the mobile first approach due to time limit!
 
-# Code review
+# Deployment
 
-1. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-2. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-3. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-4. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-5. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-6. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-7. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-8. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-9. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
-10. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
+https://www.simonlovbacka.se/Yrgopelago/
