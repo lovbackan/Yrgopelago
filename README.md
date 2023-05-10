@@ -1,8 +1,7 @@
 ![](https://github.com/lovbackan/Git-lesson/blob/main/see%20you%20space%20cowboy.gif)
 
 # Assignment
-
-Create a fictious hotel where you can book rooms and collect money from hotel guests through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se.
+Our christmast assignment over the christmast break was to create a fullstack solution for a fictious hotel where you can book rooms and collect money from hotel guests through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se.
 
 # Stack
 
