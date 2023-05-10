@@ -1,11 +1,11 @@
 ![](https://github.com/lovbackan/Git-lesson/blob/main/see%20you%20space%20cowboy.gif)
 
 # Assignment
-Our christmast assignment over the christmast break was to create a fullstack solution for a fictious hotel where you can book rooms and collect money from hotel guests through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se.
+Our christmast assignment over the christmast break was to create a fullstack solution for a fictious hotel where you can book rooms and collect money from hotel guests through the "Yrgopelago" API, create a calender that shows what rooms are avaible in correlation to the visitors bookings. For more info check out: https://www.yrgopelago.se. 
 
 # Stack
 
-Php, HTML, CSS, Javascript, SQL
+PHP, HTML, CSS, Javascript, SQLite.
 
 # Space Shuttle Island
 
@@ -17,7 +17,7 @@ Welcome to the Groundbreaker! A hotel where every image and infotext about the h
 
 # Instructions
 
-Please view this site on desktop since i have not made it with the mobile first approach due to time limit!
+Please view this site on desktop since our assignment was not to make the site responsive!
 
 # Deployment
 
